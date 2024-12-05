@@ -1,0 +1,1051 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>VLANS and Trunking - Network Routing Mangement</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="burgundy">Burgundy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="dracula">Dracula</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ecoFriend">EcoFriend</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="pinkrose">Pinkrose</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="space">Space</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="sustain">Sustain</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="tokyonight">Tokyonight</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Routing Mangement</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/VLANs_and_Trunking/VLANs_and_Trunking.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <h1 id="lab---configure-vlans-and-trunking"><a class="header" href="#lab---configure-vlans-and-trunking">Lab - Configure VLANs and Trunking</a></h1>
+<h2 id="topology"><a class="header" href="#topology">Topology</a></h2>
+<p><img src="./figures/toplogy.png" alt="&quot;Topology&quot;" /></p>
+<h2 id="addressing-table"><a class="header" href="#addressing-table">Addressing Table</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Device</th><th>Interface</th><th>IP Address</th><th>Subnet Mask</th><th>Default Gateway</th></tr></thead><tbody>
+<tr><td>S1</td><td>VLAN 1</td><td>192.168.1.11</td><td>255.255.255.0</td><td>N/A</td></tr>
+<tr><td>S2</td><td>VLAN 1</td><td>192.168.1.12</td><td>255.255.255.0</td><td>N/A</td></tr>
+<tr><td>PC-A</td><td>NIC</td><td>192.168.10.3</td><td>255.255.255.0</td><td>192.168.10.1</td></tr>
+<tr><td>PC-B</td><td>NIC</td><td>192.168.10.4</td><td>255.255.255.0</td><td>192.168.10.1</td></tr>
+</tbody></table>
+</div>
+<h2 id="objectives"><a class="header" href="#objectives">Objectives</a></h2>
+<ul>
+<li><strong>Part 1:</strong> Build the Network and Configure Basic Device Settings</li>
+<li><strong>Part 2:</strong> Create VLANs and Assign Switch Ports</li>
+<li><strong>Part 3:</strong> Maintain VLAN Port Assignments and the VLAN Database</li>
+<li><strong>Part 4:</strong> Configure an 802.1Q Trunk between the Switches</li>
+<li><strong>Part 5:</strong> Delete the VLAN Database</li>
+</ul>
+<h2 id="background--scenario"><a class="header" href="#background--scenario">Background / Scenario</a></h2>
+<p>Modern switches use virtual local-area networks (VLANs) to improve network performance by separating large Layer 2 broadcast domains into smaller ones. VLANs can also be used as a security measure by controlling which hosts can communicate. In general, VLANs make it easier to design a network to support the goals of an organization.
+VLAN trunks are used to span VLANs across multiple devices. Trunks allow the traffic from multiple VLANS to travel over a single link, while keeping the VLAN identification and segmentation intact.</p>
+<p>In this lab, you will create VLANs on both switches in the topology, assign VLANs to switch access ports, verify that VLANs are working as expected, and then create a VLAN trunk between the two switches to allow hosts in the same VLAN to communicate through the trunk, regardless of which switch the host is actually attached to.</p>
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
+<div class="admonition-title">
+<div id="admonition-note-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
+</div>
+<div>
+<p>The switches used with CCNA hands-on labs are Cisco Catalyst 2960s with Cisco IOS Release 15.2(2) (lanbasek9 image). Other routers, switches, and Cisco IOS versions can be used. Depending on the model and Cisco IOS version, the commands available and the output produced might vary from what is shown in the labs. Refer to the Router Interface Summary Table at the end of the lab for the correct interface identifiers.</p>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
+</div>
+<div>
+<p>Ensure that the routers and switches have been erased and have no startup configurations.</p>
+</div>
+</div>
+<h2 id="required-resources"><a class="header" href="#required-resources">Required Resources</a></h2>
+<ul>
+<li>2 Switches (Cisco 2960 with Cisco IOS Release 15.2(2) lanbasek9 image or comparable)</li>
+<li>2 PCs (Windows with a terminal emulation program, such as Tera Term)</li>
+<li>Console cables to configure the Cisco IOS devices via the console ports</li>
+<li>Ethernet cables as shown in the topology</li>
+</ul>
+<hr />
+<h2 id="instructions"><a class="header" href="#instructions">Instructions</a></h2>
+<h3 id="part-1-build-the-network-and-configure-basic-device-settings"><a class="header" href="#part-1-build-the-network-and-configure-basic-device-settings">Part 1: Build the Network and Configure Basic Device Settings</a></h3>
+<p>In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.</p>
+<h4 id="step-1-cable-the-network-as-shown-in-the-topology"><a class="header" href="#step-1-cable-the-network-as-shown-in-the-topology">Step 1: Cable the network as shown in the topology.</a></h4>
+<p>Attach the devices as shown in the topology diagram, and cable as necessary.</p>
+<h4 id="step-2-configure-basic-settings-for-each-switch"><a class="header" href="#step-2-configure-basic-settings-for-each-switch">Step 2: Configure basic settings for each switch.</a></h4>
+<p>Open configuration window</p>
+<ul>
+<li>
+<p>[a.]	Console into the switch and enable privileged EXEC mode.</p>
+</li>
+<li>
+<p>[b.]	Enter configuration mode.</p>
+</li>
+<li>
+<p>[c.] 	Assign a device name to the switch.</p>
+</li>
+<li>
+<p>[d.] 	Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.</p>
+</li>
+<li>
+<p>[e.] 	Assign class as the privileged EXEC encrypted password.</p>
+</li>
+<li>
+<p>[f.]	Assign cisco as the console password and enable login.</p>
+</li>
+<li>
+<p>[g.]	Assign cisco as the vty password and enable login.</p>
+</li>
+<li>
+<p>[h.]	Encrypt the plaintext passwords.</p>
+</li>
+<li>
+<p>[i.]	Create a banner that warns anyone accessing the device that unauthorized access is prohibited.</p>
+</li>
+<li>
+<p>[j.]	Configure the IP address listed in the Addressing Table for VLAN 1 on the switch.</p>
+</li>
+<li>
+<p>[k.]	Shut down all interfaces that will not be used.</p>
+</li>
+<li>
+<p>[l.]	Set the clock on the switch.</p>
+</li>
+<li>
+<p>[m.]	Save the running configuration to the startup configuration file.</p>
+</li>
+</ul>
+<p>Close configuration window</p>
+<h4 id="step-3-configure-pc-hosts"><a class="header" href="#step-3-configure-pc-hosts">Step 3: Configure PC hosts.</a></h4>
+<p>Refer to the Addressing Table for PC host address information.</p>
+<h4 id="step-4-test-connectivity"><a class="header" href="#step-4-test-connectivity">Step 4: Test connectivity.</a></h4>
+<p>Verify that the PC hosts can ping one another.</p>
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
+<div class="admonition-title">
+<div id="admonition-tip-1-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
+</div>
+<div>
+<p>It may be necessary to disable the PCs firewall to ping between PCs.</p>
+</div>
+</div>
+<div id="admonition-can-pc-a-ping-pc-b" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-a-ping-pc-b-title">
+<div class="admonition-title">
+<div id="admonition-can-pc-a-ping-pc-b-title">
+<p>Can PC-A ping PC-B?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-can-pc-a-ping-pc-b"></a>
+</div>
+<div>
+</div>
+</div>
+<div id="admonition-can-pc-a-ping-s1" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-a-ping-s1-title">
+<div class="admonition-title">
+<div id="admonition-can-pc-a-ping-s1-title">
+<p>Can PC-A ping S1?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-can-pc-a-ping-s1"></a>
+</div>
+<div>
+</div>
+</div>
+<div id="admonition-can-pc-b-ping-s2" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-b-ping-s2-title">
+<div class="admonition-title">
+<div id="admonition-can-pc-b-ping-s2-title">
+<p>Can PC-B ping S2?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-can-pc-b-ping-s2"></a>
+</div>
+<div>
+</div>
+</div>
+<div id="admonition-can-s1-ping-s2" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-s1-ping-s2-title">
+<div class="admonition-title">
+<div id="admonition-can-s1-ping-s2-title">
+<p>Can S1 ping S2?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-can-s1-ping-s2"></a>
+</div>
+<div>
+</div>
+</div>
+<div id="admonition-if-you-answered-no-to-any-of-the-above-questions-why-were-the-pings-unsuccessful" class="admonition admonish-question" role="note" aria-labelledby="admonition-if-you-answered-no-to-any-of-the-above-questions-why-were-the-pings-unsuccessful-title">
+<div class="admonition-title">
+<div id="admonition-if-you-answered-no-to-any-of-the-above-questions-why-were-the-pings-unsuccessful-title">
+<p>If you answered no to any of the above questions, why were the pings unsuccessful?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-if-you-answered-no-to-any-of-the-above-questions-why-were-the-pings-unsuccessful"></a>
+</div>
+<div>
+</div>
+</div>
+<hr />
+<h3 id="part-2-create-vlans-and-assign-switch-ports"><a class="header" href="#part-2-create-vlans-and-assign-switch-ports">Part 2: Create VLANs and Assign Switch Ports</a></h3>
+<p>In Part 2, you will create Management, Operations, Parking_Lot, and Native VLANs on both switches. You will then assign the VLANs to the appropriate interface. The show vlan command is used to verify your configuration settings.</p>
+<h4 id="step-1-create-vlans-on-the-switches"><a class="header" href="#step-1-create-vlans-on-the-switches">Step 1: Create VLANs on the switches.</a></h4>
+<p>Open configuration window</p>
+<ul>
+<li>
+<p>[a.] Create the VLANs on S1.</p>
+  <div id="admonition-terminal" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal"></a>
+  </div>
+  <div>
+<pre><code class="language-sh">S1(config)# vlan 10
+S1(config-vlan)# name Operations
+S1(config-vlan)# vlan 20
+S1(config-vlan)# name Parking_Lot
+S1(config-vlan)# vlan 99
+S1(config-vlan)# name Management
+S1(config-vlan)# vlan 1000
+S1(config-vlan)# name Native
+S1(config-vlan)# end
+</code></pre>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.]	Create the same VLANs on S2.</p>
+</li>
+<li>
+<p>[c.]	Issue the <code>show vlan brief</code> command to view the list of VLANs on S1</p>
+  <div id="admonition-output" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-title">
+  <div class="admonition-title">
+  <div id="admonition-output-title">
+<p>Output</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-output"></a>
+  </div>
+  <div>
+<pre><code>S1# show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gi0/1, Gi0/2
+10   Operations                       active
+20   Parking_Lot                      active
+99   Management                       active
+1000 Native                           active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+</code></pre>
+  </div>
+  </div>
+  <div id="admonition-what-is-the-default-vlan" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-default-vlan-title">
+  <div class="admonition-title">
+  <div id="admonition-what-is-the-default-vlan-title">
+<p>What is the default VLAN?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-what-is-the-default-vlan"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-what-ports-are-assigned-to-the-default-vlan" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-ports-are-assigned-to-the-default-vlan-title">
+  <div class="admonition-title">
+  <div id="admonition-what-ports-are-assigned-to-the-default-vlan-title">
+<p>What ports are assigned to the default VLAN?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-what-ports-are-assigned-to-the-default-vlan"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+</ul>
+<h4 id="step-2-assign-vlans-to-the-correct-switch-interfaces"><a class="header" href="#step-2-assign-vlans-to-the-correct-switch-interfaces">Step 2: Assign VLANs to the correct switch interfaces.</a></h4>
+<ul>
+<li>
+<p>[a.]	Assign VLANs to the interfaces on S1.</p>
+<ul>
+<li>
+<ol>
+<li>Assign PC-A to the Operation VLAN.</li>
+</ol>
+  <div id="admonition-terminal-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-1-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-1-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-1"></a>
+  </div>
+  <div>
+<pre><code>S1(config)# interface f0/6
+S1(config-if)# switchport mode access
+S1(config-if)# switchport access vlan 10
+</code></pre>
+  </div>
+  </div>
+</li>
+<li>
+<ol start="2">
+<li>Move the switch IP address VLAN 99.</li>
+</ol>
+  <div id="admonition-terminal-2" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-2-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-2-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-2"></a>
+  </div>
+  <div>
+<pre><code>S1(config)# interface vlan 1
+S1(config-if)# no ip address
+S1(config-if)# interface vlan 99
+S1(config-if)# ip address 192.168.1.11 255.255.255.0
+S1(config-if)# end
+</code></pre>
+  </div>
+  </div>
+</li>
+</ul>
+</li>
+<li>
+<p>[b.]	Issue the <code>show vlan brief</code> command and verify that the VLANs are assigned to the correct interfaces.</p>
+</li>
+<li>
+<p>[c.]	Issue the <code>show ip interface brief</code> command.</p>
+  <div id="admonition-what-is-the-status-of-vlan-99" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-status-of-vlan-99-title">
+  <div class="admonition-title">
+  <div id="admonition-what-is-the-status-of-vlan-99-title">
+<p>What is the status of VLAN 99?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-what-is-the-status-of-vlan-99"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+<li>
+<p>[d.] Assign PC-B to the Operations VLAN on S2.</p>
+</li>
+<li>
+<p>[e.] Remove the IP address for VLAN 1 on S2.</p>
+</li>
+<li>
+<p>[f.] Configure an IP address for VLAN 99 on S2 according to the Addressing Table.</p>
+</li>
+<li>
+<p>[g.] Use the <code>show vlan brief</code> command to verify that the VLANs are assigned to the correct interfaces.</p>
+  <div id="admonition-is-s1-able-to-ping-s2" class="admonition admonish-question" role="note" aria-labelledby="admonition-is-s1-able-to-ping-s2-title">
+  <div class="admonition-title">
+  <div id="admonition-is-s1-able-to-ping-s2-title">
+<p>Is S1 able to ping S2?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-is-s1-able-to-ping-s2"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-is-pc-a-able-to-ping-pc-b" class="admonition admonish-question" role="note" aria-labelledby="admonition-is-pc-a-able-to-ping-pc-b-title">
+  <div class="admonition-title">
+  <div id="admonition-is-pc-a-able-to-ping-pc-b-title">
+<p>Is PC-A able to ping PC-B?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-is-pc-a-able-to-ping-pc-b"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+</ul>
+<hr />
+<h3 id="part-3-maintain-vlan-port-assignments-and-the-vlan-database"><a class="header" href="#part-3-maintain-vlan-port-assignments-and-the-vlan-database">Part 3: Maintain VLAN Port Assignments and the VLAN Database</a></h3>
+<p>In Part 3, you will change VLAN assignments to ports and remove VLANs from the VLAN database.</p>
+<h4 id="step-1-assign-a-vlan-to-multiple-interfaces"><a class="header" href="#step-1-assign-a-vlan-to-multiple-interfaces">Step 1: Assign a VLAN to multiple interfaces.</a></h4>
+<p>Open configuration window</p>
+<ul>
+<li>
+<p>[a.] On S1, assign interfaces F0/11 – 24 to VLAN99.</p>
+  <div id="admonition-terminal-3" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-3-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-3-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-3"></a>
+  </div>
+  <div>
+<p>S1(config)# interface range f0/11-24
+S1(config-if-range)# switchport mode access
+S1(config-if-range)# switchport access vlan 99
+S1(config-if-range)# end</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.] Issue the show vlan brief command to verify VLAN assignments.</p>
+</li>
+<li>
+<p>[c.] Reassign F0/11 and F0/21 to VLAN 10.</p>
+</li>
+<li>
+<p>[d.] Verify that VLAN assignments are correct.</p>
+</li>
+</ul>
+<h4 id="step-2-remove-a-vlan-assignment-from-an-interface"><a class="header" href="#step-2-remove-a-vlan-assignment-from-an-interface">Step 2: Remove a VLAN assignment from an interface.</a></h4>
+<ul>
+<li>
+<p>[a.] Use the no switchport access vlan command to remove the VLAN 99 assignment to F0/24.</p>
+  <div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-4-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+  </div>
+  <div>
+<p>S1(config)# interface f0/24
+S1(config-if)# no switchport access vlan
+S1(config-if)# end</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.]	Verify that the VLAN change was made.</p>
+  <div id="admonition-which-vlan-is-f024-now-associated-with" class="admonition admonish-question" role="note" aria-labelledby="admonition-which-vlan-is-f024-now-associated-with-title">
+  <div class="admonition-title">
+  <div id="admonition-which-vlan-is-f024-now-associated-with-title">
+<p>Which VLAN is F0/24 now associated with?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-which-vlan-is-f024-now-associated-with"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+</ul>
+<h3 id="step-3-remove-a-vlan-id-from-the-vlan-database"><a class="header" href="#step-3-remove-a-vlan-id-from-the-vlan-database">Step 3: Remove a VLAN ID from the VLAN database.</a></h3>
+<ul>
+<li>
+<p>[a.]	Add VLAN 30 to interface F0/24 without issuing the global VLAN command.</p>
+  <div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-5-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
+  </div>
+  <div>
+<p>S1(config)# interface f0/24
+S1(config-if)# switchport access vlan 30
+% Access VLAN does not exist. Creating vlan 30</p>
+  </div>
+  </div>
+  <div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
+  <div class="admonition-title">
+  <div id="admonition-note-1-title">
+<p>Note</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-note-1"></a>
+  </div>
+  <div>
+<p>Current switch technology no longer requires that the vlan command be issued to add a VLAN to the database. By assigning an unknown VLAN to a port, the VLAN will be created and added to the VLAN database.</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.] Verify that the new VLAN is displayed in the VLAN table.</p>
+  <div id="admonition-what-is-the-default-name-of-vlan-30" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-default-name-of-vlan-30-title">
+  <div class="admonition-title">
+  <div id="admonition-what-is-the-default-name-of-vlan-30-title">
+<p>What is the default name of VLAN 30?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-what-is-the-default-name-of-vlan-30"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+<li>
+<p>[c.] Use the no vlan 30 command to remove VLAN 30 from the VLAN database.</p>
+  <div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
+  <div class="admonition-title">
+  <div id="admonition-note-2-title">
+<p>Note</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-note-2"></a>
+  </div>
+  <div>
+<p>S1(config)# no vlan 30
+S1(config)# end</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[d.] Issue the show vlan brief command. F0/24 was assigned to VLAN 30.</p>
+  <div id="admonition-after-deleting-vlan-30-from-the-vlan-database-what-vlan-is-port-f024-assigned-to-what-happens-to-the-traffic-destined-to-the-host-attached-to-f024" class="admonition admonish-question" role="note" aria-labelledby="admonition-after-deleting-vlan-30-from-the-vlan-database-what-vlan-is-port-f024-assigned-to-what-happens-to-the-traffic-destined-to-the-host-attached-to-f024-title">
+  <div class="admonition-title">
+  <div id="admonition-after-deleting-vlan-30-from-the-vlan-database-what-vlan-is-port-f024-assigned-to-what-happens-to-the-traffic-destined-to-the-host-attached-to-f024-title">
+<p>After deleting VLAN 30 from the VLAN database, what VLAN is port F0/24 assigned to? What happens to the traffic destined to the host attached to F0/24?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-after-deleting-vlan-30-from-the-vlan-database-what-vlan-is-port-f024-assigned-to-what-happens-to-the-traffic-destined-to-the-host-attached-to-f024"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+<li>
+<p>[e.] Issue the no switchport access vlan command on interface F0/24.</p>
+</li>
+<li>
+<p>[f.] Issue the show vlan brief command to determine the VLAN assignment for F0/24.</p>
+  <div id="admonition-to-which-vlan-is-f024-assigned" class="admonition admonish-question" role="note" aria-labelledby="admonition-to-which-vlan-is-f024-assigned-title">
+  <div class="admonition-title">
+  <div id="admonition-to-which-vlan-is-f024-assigned-title">
+<p>To which VLAN is F0/24 assigned?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-to-which-vlan-is-f024-assigned"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-tip-2" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-2-title">
+  <div class="admonition-title">
+  <div id="admonition-tip-2-title">
+<p>Tip</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-tip-2"></a>
+  </div>
+  <div>
+<p>Before removing a VLAN from the database, it is recommended that you reassign all the ports assigned to that VLAN.</p>
+  </div>
+  </div>
+  <div id="admonition-why-should-you-reassign-a-port-to-another-vlan-before-removing-the-vlan-from-the-vlan-database" class="admonition admonish-question" role="note" aria-labelledby="admonition-why-should-you-reassign-a-port-to-another-vlan-before-removing-the-vlan-from-the-vlan-database-title">
+  <div class="admonition-title">
+  <div id="admonition-why-should-you-reassign-a-port-to-another-vlan-before-removing-the-vlan-from-the-vlan-database-title">
+<p>Why should you reassign a port to another VLAN before removing the VLAN from the VLAN database?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-why-should-you-reassign-a-port-to-another-vlan-before-removing-the-vlan-from-the-vlan-database"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+</ul>
+<hr />
+<h3 id="part-4-configure-an-8021q-trunk-between-the-switches"><a class="header" href="#part-4-configure-an-8021q-trunk-between-the-switches">Part 4: Configure an 802.1Q Trunk Between the Switches</a></h3>
+<p>In Part 4, you will configure interface F0/1 to use the Dynamic Trunking Protocol (DTP) to allow it to negotiate the trunk mode. After this has been accomplished and verified, you will disable DTP on interface F0/1 and manually configure it as a trunk.</p>
+<h4 id="step-1-use-dtp-to-initiate-trunking-on-f01"><a class="header" href="#step-1-use-dtp-to-initiate-trunking-on-f01">Step 1: Use DTP to initiate trunking on F0/1.</a></h4>
+<p>The default DTP mode of a 2960 switch port is dynamic auto. This allows the interface to convert the link to a trunk if the neighboring interface is set to trunk or dynamic desirable mode.</p>
+<p>Open configuration window</p>
+<ul>
+<li>
+<p>[a.] Set F0/1 on S1 to negotiate trunk mode.</p>
+  <div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-6-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
+  </div>
+  <div>
+<pre><code>S1(config)# interface f0/1
+S1(config-if)# switchport mode dynamic desirable
+Sep 19 02:51:47.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+Sep 19 02:51:47.291: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+</code></pre>
+  </div>
+  </div>
+<p>You should also receive link status messages on S2.</p>
+  <div id="admonition-output-1" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-1-title">
+  <div class="admonition-title">
+  <div id="admonition-output-1-title">
+<p>Output</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-output-1"></a>
+  </div>
+  <div>
+<pre><code>S2#
+Sep 19 02:42:19.424: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+Sep 19 02:42:21.454: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+Sep 19 02:42:22.419: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+</code></pre>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.]	Issue the show vlan brief command on S1 and S2. Interface F0/1 is no longer assigned to VLAN 1. Trunked interfaces are not listed in the VLAN table.</p>
+</li>
+<li>
+<p>[c.]	Issue the show interfaces trunk command to view trunked interfaces. Notice that the mode on S1 is set to desirable, and the mode on S2 is set to auto.</p>
+  <div id="admonition-terminal-7" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-7-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-7-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-7"></a>
+  </div>
+  <div>
+<p>S1# show interfaces trunk</p>
+  </div>
+  </div>
+  <div id="admonition-terminal-8" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-8-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-8-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-8"></a>
+  </div>
+  <div>
+<p>S2# show interfaces trunk</p>
+  </div>
+  </div>
+  <div id="admonition-tip-3" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-3-title">
+  <div class="admonition-title">
+  <div id="admonition-tip-3-title">
+<p>Tip</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-tip-3"></a>
+  </div>
+  <div>
+<p>By default, all VLANs are allowed on a trunk. The switchport trunk command allows you to control what VLANs have access to the trunk. For this lab, keep the default settings which allows all VLANs to traverse F0/1.</p>
+  </div>
+  </div>
+<p>Close configuration window</p>
+</li>
+<li>
+<p>[d.] Verify that VLAN traffic is traveling over trunk interface F0/1.</p>
+  <div id="admonition-can-s1-ping-s2-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-s1-ping-s2-1-title">
+  <div class="admonition-title">
+  <div id="admonition-can-s1-ping-s2-1-title">
+<p>Can S1 ping S2?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-can-s1-ping-s2-1"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-can-pc-a-ping-pc-b-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-a-ping-pc-b-1-title">
+  <div class="admonition-title">
+  <div id="admonition-can-pc-a-ping-pc-b-1-title">
+<p>Can PC-A ping PC-B?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-can-pc-a-ping-pc-b-1"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-can-pc-a-ping-s1-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-a-ping-s1-1-title">
+  <div class="admonition-title">
+  <div id="admonition-can-pc-a-ping-s1-1-title">
+<p>Can PC-A ping S1?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-can-pc-a-ping-s1-1"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+  <div id="admonition-can-pc-b-ping-s2-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-can-pc-b-ping-s2-1-title">
+  <div class="admonition-title">
+  <div id="admonition-can-pc-b-ping-s2-1-title">
+<p>Can PC-B ping S2?</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-can-pc-b-ping-s2-1"></a>
+  </div>
+  <div>
+  </div>
+  </div>
+</li>
+</ul>
+<h4 id="step-2-manually-configure-trunk-interface-f01"><a class="header" href="#step-2-manually-configure-trunk-interface-f01">Step 2: Manually configure trunk interface F0/1.</a></h4>
+<p>The switchport mode trunk command is used to manually configure a port as a trunk. This command should be issued on both ends of the link.</p>
+<ul>
+<li>
+<p>[a.] Change the switchport mode on interface F0/1 to force trunking. Make sure to do this on both switches.</p>
+<p>Open configuration window</p>
+  <div id="admonition-terminal-9" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-9-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-9-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-9"></a>
+  </div>
+  <div>
+<pre><code>S1(config)# interface f0/1
+S1(config-if)# switchport mode trunk
+</code></pre>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.] Issue the show interfaces trunk command to view the trunk mode. Notice that the mode changed from desirable to on.</p>
+  <div id="admonition-terminal-10" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-10-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-10-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-10"></a>
+  </div>
+  <div>
+<pre><code>S2# show interfaces trunk
+</code></pre>
+  </div>
+  </div>
+</li>
+<li>
+<p>[c.] Modify the trunk configuration on both switches by changing the native VLAN from VLAN 1 to VLAN 1000.</p>
+  <div id="admonition-terminal-11" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-11-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-11-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-11"></a>
+  </div>
+  <div>
+<p>S1(config)# interface f0/1
+S1(config-if)# switchport trunk native vlan 1000</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[d.]	Issue the show interfaces trunk command to view the trunk. Notice the Native VLAN information is updated.</p>
+  <div id="admonition-terminal-12" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-12-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-12-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-12"></a>
+  </div>
+  <div>
+<p>S2# show interfaces trunk</p>
+  </div>
+  </div>
+  <div id="admonition-question" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-title">
+  <div class="admonition-title">
+  <div id="admonition-question-title">
+<p>Question</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-question"></a>
+  </div>
+  <div>
+<p>Why might you want to manually configure an interface to trunk mode instead of using DTP?</p>
+  </div>
+  </div>
+  <div id="admonition-question-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-1-title">
+  <div class="admonition-title">
+  <div id="admonition-question-1-title">
+<p>Question</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-question-1"></a>
+  </div>
+  <div>
+<p>Why might you want to change the native VLAN on a trunk?</p>
+  </div>
+  </div>
+</li>
+</ul>
+<hr />
+<h3 id="part-5-delete-the-vlan-database"><a class="header" href="#part-5-delete-the-vlan-database">Part 5: Delete the VLAN Database</a></h3>
+<p>In Part 5, you will delete the VLAN Database from the switch. It is necessary to do this when initializing a switch back to its default settings.</p>
+<h4 id="step-1-determine-if-the-vlan-database-exists"><a class="header" href="#step-1-determine-if-the-vlan-database-exists">Step 1: Determine if the VLAN database exists.</a></h4>
+<p>Open configuration window</p>
+<p>Issue the <code>show flash</code> command to determine if a <code>vlan.dat</code> file exists in flash.</p>
+<div id="admonition-terminal-13" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-13-title">
+<div class="admonition-title">
+<div id="admonition-terminal-13-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-13"></a>
+</div>
+<div>
+<p>S1# show flash:</p>
+</div>
+</div>
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
+<div class="admonition-title">
+<div id="admonition-note-3-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
+</div>
+<div>
+<p>If there is a <code>vlan.dat</code> file located in flash, then the VLAN database does not contain its default settings.</p>
+</div>
+</div>
+<h4 id="step-2-delete-the-vlan-database"><a class="header" href="#step-2-delete-the-vlan-database">Step 2: Delete the VLAN database.</a></h4>
+<ul>
+<li>
+<p>[a.] Issue the delete <code>vlan\.dat</code> command to delete the <code>vlan\.dat</code> file from flash and reset the VLAN database back to its default settings. You will be prompted twice to confirm that you want to delete the <code>vlan\.dat</code> file. Press Enter both times.</p>
+  <div id="admonition-terminal-14" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-14-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-14-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-14"></a>
+  </div>
+  <div>
+<p>S1# delete <code>vlan\.dat</code>
+Delete filename [vlan.dat]?
+Delete flash:/vlan.dat? [confirm]</p>
+  </div>
+  </div>
+</li>
+<li>
+<p>[b.] Issue the show flash command to verify that the <code>vlan\.dat</code> file has been deleted.</p>
+  <div id="admonition-terminal-15" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-15-title">
+  <div class="admonition-title">
+  <div id="admonition-terminal-15-title">
+<p>Terminal</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-terminal-15"></a>
+  </div>
+  <div>
+<p>S1# show flash:</p>
+  </div>
+  </div>
+  <div id="admonition-question-2" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-2-title">
+  <div class="admonition-title">
+  <div id="admonition-question-2-title">
+<p>Question</p>
+  </div>
+  <a class="admonition-anchor-link" href="#admonition-question-2"></a>
+  </div>
+  <div>
+<p>To initialize a switch back to its default settings, what other commands are needed?</p>
+  </div>
+  </div>
+</li>
+</ul>
+<h2 id="reflection-questions"><a class="header" href="#reflection-questions">Reflection Questions</a></h2>
+<div id="admonition-question-3" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-3-title">
+<div class="admonition-title">
+<div id="admonition-question-3-title">
+<p>Question</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-3"></a>
+</div>
+<div>
+<p>What is needed to allow hosts on VLAN 10 to communicate to hosts on VLAN 99?</p>
+</div>
+</div>
+<div id="admonition-question-4" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-4-title">
+<div class="admonition-title">
+<div id="admonition-question-4-title">
+<p>Question</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-4"></a>
+</div>
+<div>
+<p>What are some primary benefits that an organization can receive through effective use of VLANs?</p>
+</div>
+</div>
+                    </main>
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../BasicRouterLab/BasicRouterLab.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../DHCPv4/DHCPv4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../BasicRouterLab/BasicRouterLab.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../DHCPv4/DHCPv4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

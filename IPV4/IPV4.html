@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>IPv4 - Network Routing Management</title>
+        <title>IPv4 - Network Routing Mangement</title>
 
 
         <!-- Custom HTML head -->
@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -129,7 +133,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Network Routing Management</h1>
+                    <h1 class="menu-title">Network Routing Mangement</h1>
 
                     <div class="right-buttons">
                         <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
@@ -167,148 +171,183 @@
                         <h1 id="ipv4"><a class="header" href="#ipv4">IPv4</a></h1>
 <h2 id="exercise-1-identify-the-ipv4-class"><a class="header" href="#exercise-1-identify-the-ipv4-class">Exercise 1: Identify the IPv4 Class</a></h2>
 <ol>
-<li>
+<li><details id="admonition-question-what-class-does-the-ip-address-12625342-belong-to" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-what-class-does-the-ip-address-12625342-belong-to-title">
+<summary class="admonition-title">
+<div id="admonition-question-what-class-does-the-ip-address-12625342-belong-to-title">
 <p><strong>Question</strong>: What class does the IP address <code>126.25.34.2</code> belong to?</p>
- <details>
- <summary>Answer</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-what-class-does-the-ip-address-12625342-belong-to"></a>
+</summary>
+<div>
 <ul>
 <li><strong>Class</strong>: Class A</li>
 </ul>
- </details>
+</div>
+</details>
 </li>
-<li>
+<li><details id="admonition-question-what-class-does-the-ip-address-191502314-belong-to" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-what-class-does-the-ip-address-191502314-belong-to-title">
+<summary class="admonition-title">
+<div id="admonition-question-what-class-does-the-ip-address-191502314-belong-to-title">
 <p><strong>Question</strong>: What class does the IP address <code>191.50.23.14</code> belong to?</p>
- <details>
- <summary>Answer</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-what-class-does-the-ip-address-191502314-belong-to"></a>
+</summary>
+<div>
 <ul>
 <li><strong>Class</strong>: Class B</li>
 </ul>
- </details>
+</div>
+</details>
+</li>
+<li><details id="admonition-question-what-class-does-224005-belong-to-and-what-is-its-purpose" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-what-class-does-224005-belong-to-and-what-is-its-purpose-title">
+<summary class="admonition-title">
+<div id="admonition-question-what-class-does-224005-belong-to-and-what-is-its-purpose-title">
+<p><strong>Question</strong>: What class does <code>224.0.0.5</code> belong to, and what is its purpose?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-what-class-does-224005-belong-to-and-what-is-its-purpose"></a>
+</summary>
+<div>
+<ul>
+<li>
+<p><strong>Class</strong>: Class D</p>
 </li>
 <li>
-<p><strong>Question</strong>: What class does <code>224.0.0.5</code> belong to, and what is its purpose?</p>
- <details>
- <summary>Answer</summary>
-<ul>
-<li><strong>Class</strong>: Class D</li>
-<li><strong>Purpose</strong>: Class D addresses are used for multicast.</li>
+<p><strong>Purpose</strong>: Class D addresses are used for multicast.</p>
+</li>
 </ul>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="exercise-2-calculate-the-number-of-hosts-and-networks"><a class="header" href="#exercise-2-calculate-the-number-of-hosts-and-networks">Exercise 2: Calculate the Number of Hosts and Networks</a></h2>
 <ol>
-<li>
+<li><details id="admonition-question-for-a-class-a-network-how-many-hosts-and-networks-are-possible" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-for-a-class-a-network-how-many-hosts-and-networks-are-possible-title">
+<summary class="admonition-title">
+<div id="admonition-question-for-a-class-a-network-how-many-hosts-and-networks-are-possible-title">
 <p><strong>Question</strong>: For a Class A network, how many hosts and networks are possible?</p>
-<ul>
-<li>
-<p><strong>Hint</strong>: Class A networks use the first 8 bits for the network, leaving 24 bits for hosts.</p>
-  <details>
-  <summary>Answer</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-for-a-class-a-network-how-many-hosts-and-networks-are-possible"></a>
+</summary>
+<div>
 <ul>
 <li><strong>Networks</strong>: \(126 (1.0.0.0 - 126.0.0.0)\)</li>
 <li><strong>Hosts per network</strong>: \(2^{24} - 2 = 16,777,214\) usable hosts</li>
 </ul>
-  </details>
+</div>
+</details>
 </li>
-</ul>
-</li>
-<li>
+<li><details id="admonition-question-calculate-the-number-of-hosts-and-networks-for-a-class-c-address" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-calculate-the-number-of-hosts-and-networks-for-a-class-c-address-title">
+<summary class="admonition-title">
+<div id="admonition-question-calculate-the-number-of-hosts-and-networks-for-a-class-c-address-title">
 <p><strong>Question</strong>: Calculate the number of hosts and networks for a Class C address.</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-calculate-the-number-of-hosts-and-networks-for-a-class-c-address"></a>
+</summary>
+<div>
 <ul>
 <li>
-<p><strong>Hint</strong>: Class C uses 24 bits for the network and 8 bits for hosts.</p>
-  <details>
-  <summary>Answer</summary>
-<ul>
-<li><strong>Networks</strong>: \(2^{21} = 2,097,152\) possible Class C networks</li>
-<li><strong>Hosts per network</strong>: \(2^{8} - 2 = 254\) usable hosts</li>
-</ul>
-  </details>
+<p><strong>Networks</strong>: \(2^{21} = 2,097,152\) possible Class C networks</p>
+</li>
+<li>
+<p><strong>Hosts per network</strong>: \(2^{8} - 2 = 254\) usable hosts</p>
 </li>
 </ul>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="exercise-3-convert-between-binary-and-dotted-decimal-notation"><a class="header" href="#exercise-3-convert-between-binary-and-dotted-decimal-notation">Exercise 3: Convert Between Binary and Dotted Decimal Notation</a></h2>
 <ol>
-<li>
+<li><details id="admonition-question-convert-the-binary-ip-11000000101010000000000100000001-to-dotted-decimal-notation" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-convert-the-binary-ip-11000000101010000000000100000001-to-dotted-decimal-notation-title">
+<summary class="admonition-title">
+<div id="admonition-question-convert-the-binary-ip-11000000101010000000000100000001-to-dotted-decimal-notation-title">
 <p><strong>Question</strong>: Convert the binary IP <code>11000000.10101000.00000001.00000001</code> to dotted decimal notation.</p>
-<ul>
-<li>
-<p><strong>Hint</strong>: Break down each octet and convert each binary section to decimal.</p>
-  <details>
-  <summary>Answer</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-convert-the-binary-ip-11000000101010000000000100000001-to-dotted-decimal-notation"></a>
+</summary>
+<div>
 <ul>
 <li><strong>Dotted Decimal</strong>: <code>192.168.1.1</code></li>
 </ul>
-  </details>
+</div>
+</details>
 </li>
-</ul>
-</li>
-<li>
+<li><details id="admonition-question-convert-the-ip-address-10001-to-binary" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-convert-the-ip-address-10001-to-binary-title">
+<summary class="admonition-title">
+<div id="admonition-question-convert-the-ip-address-10001-to-binary-title">
 <p><strong>Question</strong>: Convert the IP address <code>10.0.0.1</code> to binary.</p>
-<ul>
-<li>
-<p><strong>Hint</strong>: Convert each octet (10, 0, 0, and 1) individually to binary.</p>
-  <details>
-  <summary>Answer</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-convert-the-ip-address-10001-to-binary"></a>
+</summary>
+<div>
 <ul>
 <li><strong>Binary</strong>: <code>00001010.00000000.00000000.00000001</code></li>
 </ul>
-  </details>
-</li>
-</ul>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="exercise-4-reserved-and-special-addresses"><a class="header" href="#exercise-4-reserved-and-special-addresses">Exercise 4: Reserved and Special Addresses</a></h2>
 <ol>
-<li>
+<li><details id="admonition-question-is-127001-a-public-or-reserved-address-and-what-is-it-used-for" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-is-127001-a-public-or-reserved-address-and-what-is-it-used-for-title">
+<summary class="admonition-title">
+<div id="admonition-question-is-127001-a-public-or-reserved-address-and-what-is-it-used-for-title">
 <p><strong>Question</strong>: Is <code>127.0.0.1</code> a public or reserved address, and what is it used for?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-is-127001-a-public-or-reserved-address-and-what-is-it-used-for"></a>
+</summary>
+<div>
 <ul>
 <li>
-<p><strong>Hint</strong>: Think of testing or diagnosing a local machine.</p>
-  <details>
-  <summary>Answer</summary>
-<ul>
-<li><strong>Type</strong>: Reserved (Loopback address)</li>
-<li><strong>Purpose</strong>: Used for local testing of the TCP/IP stack.</li>
-</ul>
-  </details>
-</li>
-</ul>
+<p><strong>Type</strong>: Reserved (Loopback address)</p>
 </li>
 <li>
+<p><strong>Purpose</strong>: Used for local testing of the TCP/IP stack.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-question-identify-the-purpose-of-the-ip-address-range-16925400---169254255255" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-identify-the-purpose-of-the-ip-address-range-16925400---169254255255-title">
+<summary class="admonition-title">
+<div id="admonition-question-identify-the-purpose-of-the-ip-address-range-16925400---169254255255-title">
 <p><strong>Question</strong>: Identify the purpose of the IP address range <code>169.254.0.0 - 169.254.255.255</code>.</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-identify-the-purpose-of-the-ip-address-range-16925400---169254255255"></a>
+</summary>
+<div>
 <ul>
 <li>
-<p><strong>Hint</strong>: This range is automatically assigned when DHCP fails.</p>
-  <details>
-  <summary>Answer</summary>
-<ul>
-<li><strong>Type</strong>: Automatic Private IP Addressing (APIPA)</li>
-<li><strong>Purpose</strong>: Assigned when DHCP is unavailable, allowing local communication.</li>
-</ul>
-  </details>
-</li>
-</ul>
+<p><strong>Type</strong>: Automatic Private IP Addressing (APIPA)</p>
 </li>
 <li>
+<p><strong>Purpose</strong>: Assigned when DHCP is unavailable, allowing local communication.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-question-is-0000-a-valid-ipv4-address-and-if-so-what-is-it-used-for" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-is-0000-a-valid-ipv4-address-and-if-so-what-is-it-used-for-title">
+<summary class="admonition-title">
+<div id="admonition-question-is-0000-a-valid-ipv4-address-and-if-so-what-is-it-used-for-title">
 <p><strong>Question</strong>: Is <code>0.0.0.0</code> a valid IPv4 address, and if so, what is it used for?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-is-0000-a-valid-ipv4-address-and-if-so-what-is-it-used-for"></a>
+</summary>
+<div>
 <ul>
 <li>
-<p><strong>Hint</strong>: This address has a specific meaning in routing and IP assignments.</p>
-  <details>
-  <summary>Answer</summary>
-<ul>
-<li><strong>Validity</strong>: Yes, it’s valid.</li>
-<li><strong>Purpose</strong>: Represents an unspecified address or a default route.</li>
-</ul>
-  </details>
+<p><strong>Validity</strong>: Yes, it’s valid.</p>
+</li>
+<li>
+<p><strong>Purpose</strong>: Represents an unspecified address or a default route.</p>
 </li>
 </ul>
+</div>
+</details>
 </li>
 </ol>
 

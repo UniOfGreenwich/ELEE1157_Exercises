@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>IPV4 Subnetting - Network Routing Management</title>
+        <title>IPV4 Subnetting - Network Routing Mangement</title>
 
 
         <!-- Custom HTML head -->
@@ -28,7 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -129,7 +133,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Network Routing Management</h1>
+                    <h1 class="menu-title">Network Routing Mangement</h1>
 
                     <div class="right-buttons">
                         <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
@@ -199,31 +203,51 @@
 <p>Below you will find some exercises to get you familiar and at ease with calculating different subnets.</p>
 <h2 id="1-given-network-1921681028"><a class="header" href="#1-given-network-1921681028">1: Given Network <code>192.168.1.0/28</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li><details id="admonition-what-is-the-netmask" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-netmask-title">
+<p><strong>What is the Netmask?</strong></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-netmask"></a>
+</summary>
+<div>
 <ul>
 <li>The subnet mask for <code>/28</code> is <code>255.255.255.240</code> (in binary: <code>11111111.11111111.11111111.11110000</code>)</li>
 </ul>
- </details>
+</div>
+</details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/28</code>, we have 4 host bits remaining.</li>
-<li>Number of subnets created: \(2^4 = 16\) possible subnets.</li>
-<li>Hosts per subnet: \(2^4 - 2 = 14\) usable addresses per subnet (subtracting 2 for network and broadcast addresses).</li>
-</ul>
- </details>
+<li>
+<p>With <code>/28</code>, we have 4 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^4 = 16\) possible subnets.</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^4 - 2 = 14\) usable addresses per subnet (subtracting 2 for network and broadcast addresses).</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
- <details>
- <summary>Click to reveal Subnet Ranges</summary>
- <table style="font-size:15px">
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges"></a>
+</summary>
+<div>
+ <table style="font-size:15px" align=center>
  <tr>
      <th>Subnet ID</th>
      <th>Range</th>
@@ -250,36 +274,57 @@
      <td><code>192.168.1.49 - 192.168.1.62</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="2-given-network-172160022"><a class="header" href="#2-given-network-172160022">2: Given Network <code>172.16.0.0/22</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-1-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-1-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-1"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/22</code> is <code>255.255.252.0</code> (in binary: <code>11111111.11111111.11111100.00000000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-1-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-1-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-1"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/22</code>, we have 10 host bits remaining.</li>
-<li>Number of subnets created: \(2^2 = 4\) subnets when starting from <code>/20</code>.</li>
-<li>Hosts per subnet: \(2^{10} - 2 = 1022\) usable addresses per subnet.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/22</code>, we have 10 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^2 = 4\) subnets when starting from <code>/20</code>.</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^{10} - 2 = 1022\) usable addresses per subnet.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-1-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-1-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
- <details>
- <summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges-1"></a>
+</summary>
+<div>
  <table style="font-size:15px">
  <tr>
      <th>Subnet ID</th>
@@ -307,36 +352,57 @@
      <td><code>192.168.1.49 - 192.168.1.62</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="3-given-network-1000016"><a class="header" href="#3-given-network-1000016">3: Given Network <code>10.0.0.0/16</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-2" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-2-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-2-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-2"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/16</code> is <code>255.255.0.0</code> (in binary: <code>11111111.11111111.00000000.00000000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-2" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-2-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-2-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-2"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/16</code>, we have 16 host bits remaining.</li>
-<li>Number of subnets created: \(2^8 = 256\) if subnetting from <code>/8</code>.</li>
-<li>Hosts per subnet: \(2^{16} - 2 = 65534\) usable addresses per subnet.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/16</code>, we have 16 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^8 = 256\) if subnetting from <code>/8</code>.</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^{16} - 2 = 65534\) usable addresses per subnet.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges-2" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-2-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-2-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
- <details>
- <summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges-2"></a>
+</summary>
+<div>
  <table style="font-size:15px">
  <tr>
      <th>Subnet ID</th>
@@ -359,36 +425,57 @@
      <td><code>10.2.0.1 - 10.2.255.254</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="4-given-network-19216810027"><a class="header" href="#4-given-network-19216810027">4: Given Network <code>192.168.10.0/27</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-3" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-3-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-3-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-3"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/27</code> is <code>255.255.255.224</code> (in binary: <code>11111111.11111111.11111111.11100000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-3" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-3-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-3-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-3"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/27</code>, we have 5 host bits remaining.</li>
-<li>Number of subnets created: \(2^3 = 8\) subnets when starting from <code>/24</code>.</li>
-<li>Hosts per subnet: \(2^5 - 2 = 30\) usable addresses per subnet.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/27</code>, we have 5 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^3 = 8\) subnets when starting from <code>/24</code>.</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^5 - 2 = 30\) usable addresses per subnet.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges-3" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-3-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-3-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
-<details>
-<summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges-3"></a>
+</summary>
+<div>
  <table style="font-size:14px">
  <tr>
      <th>Subnet ID</th>
@@ -411,36 +498,57 @@
      <td><code>192.168.10.65 - 192.168.10.94</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="5-given-network-2030113024"><a class="header" href="#5-given-network-2030113024">5: Given Network <code>203.0.113.0/24</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-4" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-4-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-4-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-4"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/24</code> is <code>255.255.255.0</code> (in binary: <code>11111111.11111111.11111111.00000000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-4" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-4-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-4-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-4"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/24</code>, we have 8 host bits remaining.</li>
-<li>Number of subnets created: \(2^0 = 1\) subnet (no further division from <code>/24</code>).</li>
-<li>Hosts per subnet: \(2^8 - 2 = 254\) usable addresses.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/24</code>, we have 8 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^0 = 1\) subnet (no further division from <code>/24</code>).</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^8 - 2 = 254\) usable addresses.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-range" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-range-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-range-title">
 <p><strong>Determine the Subnet Range</strong></p>
- <details>
- <summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-range"></a>
+</summary>
+<div>
  <table style="font-size:15px">
  <tr>
      <th>Subnet ID</th>
@@ -453,36 +561,57 @@
      <td><code>203.0.113.1 - 203.0.113.254</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="6-given-network-172160019"><a class="header" href="#6-given-network-172160019">6: Given Network <code>172.16.0.0/19</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-5" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-5-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-5-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-5"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/19</code> is <code>255.255.224.0</code> (in binary: <code>11111111.11111111.11100000.00000000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-5" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-5-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-5-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-5"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/19</code>, we have 13 host bits remaining.</li>
-<li>Number of subnets created: \(2^5 = 32\) subnets if starting from <code>/14</code>.</li>
-<li>Hosts per subnet: \(2^{13} - 2 = 8190\) usable addresses per subnet.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/19</code>, we have 13 host bits remaining.</p>
 </li>
 <li>
+<p>Number of subnets created: \(2^5 = 32\) subnets if starting from <code>/14</code>.</p>
+</li>
+<li>
+<p>Hosts per subnet: \(2^{13} - 2 = 8190\) usable addresses per subnet.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges-4" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-4-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-4-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
-<details>
-<summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges-4"></a>
+</summary>
+<div>
  <table style="font-size:15px">
  <tr>
      <th>Subnet ID</th>
@@ -500,36 +629,54 @@
      <td><code>172.16.32.1 - 172.16.63.254</code></td>
  </tr>
  </table>
- </summary>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="7-given-network-1985110012830"><a class="header" href="#7-given-network-1985110012830">7: Given Network <code>198.51.100.128/30</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-6" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-6-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-6-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-6"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/30</code> is <code>255.255.255.252</code> (in binary: <code>11111111.11111111.11111111.11111100</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-6" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-6-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-6-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-6"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/30</code>, we have 2 host bits remaining.</li>
-<li>Hosts per subnet: \(2^2 - 2 = 2\) usable addresses per subnet.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/30</code>, we have 2 host bits remaining.</p>
 </li>
 <li>
+<p>Hosts per subnet: \(2^2 - 2 = 2\) usable addresses per subnet.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-range-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-range-1-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-range-1-title">
 <p><strong>Determine the Subnet Range</strong></p>
- <details>
- <summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-range-1"></a>
+</summary>
+<div>
  <table style="font-size:13px">
  <tr>
      <th>Subnet ID</th>
@@ -542,35 +689,54 @@
      <td><code>198.51.100.129 - 198.51.100.130</code></td>
  </tr>
  </table>
- </details>
+</div>
+</details>
 </li>
 </ol>
 <hr />
 <h2 id="8-given-network-192026426"><a class="header" href="#8-given-network-192026426">8: Given Network <code>192.0.2.64/26</code></a></h2>
 <ol>
-<li>
-<p><strong>Netmask</strong></p>
- <details>
- <summary>Click to reveal netmask</summary>
+<li> <details id="admonition-what-is-the-netmask-7" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-netmask-7-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-is-the-netmask-7-title">
+<p><strong>What is the Netmask?</strong></p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-is-the-netmask-7"></a>
+ </summary>
+ <div>
 <ul>
 <li>The subnet mask for <code>/26</code> is <code>255.255.255.192</code> (in binary: <code>11111111.11111111.11111111.11000000</code>)</li>
 </ul>
+ </div>
  </details>
 </li>
-<li>
+<li><details id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-7" class="admonition admonish-question" role="note" aria-labelledby="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-7-title">
+<summary class="admonition-title">
+<div id="admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-7-title">
 <p><strong>Calculate the Number of Subnets and Hosts per Subnet</strong></p>
- <details>
- <summary>Click to reveal calculation</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-calculate-the-number-of-subnets-and-hosts-per-subnet-7"></a>
+</summary>
+<div>
 <ul>
-<li>With <code>/26</code>, we have 6 host bits remaining.</li>
-<li>Hosts per subnet: \(2^6 - 2 = 62\) usable addresses.</li>
-</ul>
- </details>
+<li>
+<p>With <code>/26</code>, we have 6 host bits remaining.</p>
 </li>
 <li>
+<p>Hosts per subnet: \(2^6 - 2 = 62\) usable addresses.</p>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li><details id="admonition-determine-the-subnet-ranges-5" class="admonition admonish-question" role="note" aria-labelledby="admonition-determine-the-subnet-ranges-5-title">
+<summary class="admonition-title">
+<div id="admonition-determine-the-subnet-ranges-5-title">
 <p><strong>Determine the Subnet Ranges</strong></p>
-<details>
-<summary>Click to reveal Subnet Ranges</summary>
+</div>
+<a class="admonition-anchor-link" href="#admonition-determine-the-subnet-ranges-5"></a>
+</summary>
+<div>
  <table style="font-size:13px">
  <tr>
      <th>Subnet ID</th>
@@ -583,8 +749,8 @@
      <td><code>192.0.2.65 - 192.0.2.126</code></td>
  </tr>
  </table>
- </details>
-</li>
+</div>
+</details></li>
 </ol>
 
                     </main>

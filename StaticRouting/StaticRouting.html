@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>RIP - Network Routing Mangement</title>
+        <title>Static Routing - Network Routing Mangement</title>
 
 
         <!-- Custom HTML head -->
@@ -139,7 +139,7 @@
                         <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/RIP/RIP.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/StaticRouting/StaticRouting.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -168,168 +168,207 @@
 
                 <div id="content" class="content">
                     <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
-                        <h1 id="rip"><a class="header" href="#rip">RIP</a></h1>
-<ol>
+                        <h1 id="static-routing"><a class="header" href="#static-routing">Static Routing</a></h1>
+<p>This is a static routing lab in which we will learn how to configure static routing for a network having three routers
+inside packet tracer.</p>
+<p>In this lab there are three 1841 Routers and a total of four network:</p>
+<ul>
 <li>
-<p>You are to configure a network with 2 user end devices and three <strong>Router 1841</strong> as seen in figure 1.</p>
- <div align=center>
+<p>[1.] 1.0.0.0/8</p>
+</li>
+<li>
+<p>[2.] 2.0.0.0/8</p>
+</li>
+<li>
+<p>[3.] 3.0.0.0/8</p>
+</li>
+<li>
+<p>[4.] 4.0.0.0/8</p>
+</li>
+</ul>
+<p>Figure 1 illustrates how the setup should look.</p>
+<div align=center>
 <p><img src="./figures/figure_1.png" alt="" /></p>
-<p><strong>Figure 1 RIP Network</strong></p>
- </div>
-</li>
-<li>
-<p>For each <strong>Router 1841</strong> you will need to single click to open the configuration window, select the <strong>Physical tab</strong> then click ‘n’ drag <strong>WIC-2T</strong> to the <strong>SLOT 0</strong> as seen below. Notice that <strong>the power switch is off</strong>, no green light.</p>
- <div align=center>
-<p><img src="./figures/figure_2.png" alt="" /></p>
-<p><strong>Figure 2 Adding Serial Ports</strong></p>
- </div>
-</li>
-<li>
-<p>The interfaces should be configured as seen in table 1</p>
- <div align=center>
-<div class="table-wrapper"><table><thead><tr><th>Device</th><th>Interface</th><th>IP Configuration</th><th>Connected with</th></tr></thead><tbody>
-<tr><td>PC0</td><td>Fast Ethernet</td><td>96.0.0.2/8</td><td>Router0’s Fa0/1</td></tr>
-<tr><td>Router0</td><td>Fa0/1</td><td>96.0.0.1/8</td><td>PC0’s Fast Ethernet</td></tr>
-<tr><td>Router0</td><td>S0/0/1</td><td>192.101.10.254/30</td><td>Router2’s S0/0/1</td></tr>
-<tr><td>Router0</td><td>S0/0/0</td><td>192.101.10.249/30</td><td>Router1’s S0/0/0</td></tr>
-<tr><td>Router1</td><td>S0/0/0</td><td>192.101.10.250/30</td><td>Router0’s S0/0/0</td></tr>
-<tr><td>Router1</td><td>S0/0/1</td><td>192.101.10.246/30</td><td>Router2’s S0/0/0</td></tr>
-<tr><td>Router2</td><td>S0/0/0</td><td>192.101.10.245/30</td><td>Router1’s S0/0/1</td></tr>
-<tr><td>Router2</td><td>S0/0/1</td><td>192.101.10.253/30</td><td>Router0’s S0/0/1</td></tr>
-<tr><td>Router2</td><td>Fa0/1</td><td>25.0.0.1/30</td><td>PC1’s Fast Ethernet</td></tr>
-<tr><td>PC1</td><td>Fast Ethernet</td><td>25.0.0.2/30</td><td>Router2’s Fa0/1</td></tr>
-</tbody></table>
+<p><strong>Figure 1: Static Routing</strong></p>
 </div>
-<p><strong>Table 1 Interface Config</strong></p>
- </div>
-</li>
-<li>
-<p>Next test that your packets can reach from <strong>PC0</strong> to <strong>Router 0</strong> and <strong>PC1</strong> to <strong>Router 2</strong></p>
-</li>
-<li>
-<p>Next check that all <strong>three routers</strong> can receive packages to and from each other, if not revisit your connections
-and the interface table, table 1.</p>
-</li>
-<li>
-<p>Now we are ready to create the <strong>RIP Routing Table</strong> for this network. Click each <strong>router</strong> and go to <strong>Config</strong> and
-then click <strong>RIP</strong> in the submenu, figure 3.</p>
- <div align=center>
-<p><img src="./figures/figure_3.png" alt="" /></p>
-<p><strong>Figure 3 RIP Routing Table GUI</strong></p>
- </div>
-</li>
-<li>
-<p>Next input the following IP’s into <strong>each</strong> Routers RIP Table, table 2.</p>
- <div align=center>
-<div class="table-wrapper"><table><thead><tr><th>Router</th><th>IP Address</th><th>IP Address</th><th>IP Address</th></tr></thead><tbody>
-<tr><td>Router0</td><td>96.0.0.0</td><td>192.101.10.252</td><td>192.101.10.248</td></tr>
-<tr><td>Router1</td><td>192.101.10.244</td><td>192.101.10.248</td><td></td></tr>
-<tr><td>Router2</td><td>25.0.0.0</td><td>192.101.10.252</td><td>192.101.10.244</td></tr>
-</tbody></table>
-</div>
-<p><strong>Table 2 RIP Routing Table IPs</strong></p>
- </div>
-</li>
-<li>
-<p>Now with click <strong>PC 0</strong> and go to <strong>Desktop</strong> and choose <strong>Command Prompt</strong>, figure 4.</p>
- <div align=center>
-<p><img src="./figures/figure_4.png" alt="" /></p>
-<p><strong>Figure 4 PC # Command Prompt Location</strong></p>
- </div>
-</li>
-<li>
-<p>Then <strong>ping</strong> PC 1’s IP and you should have a successful return like figure 5.</p>
- <div align=center>
-<p><img src="./figures/figure_5.png" alt="" /></p>
-<p><strong>Figure 5 Ping PC 1</strong></p>
- </div>
-</li>
-<li>
-<p>Then let us see which IP route the packets took, use the <strong>tracert</strong> command like in figure 6.</p>
-<div align=center>
-<p><img src="./figures/figure_6.png" alt="" /></p>
-<p><strong>Figure 6 Tracert</strong></p>
-</div>
-</li>
-<li>
-<p><strong>Repeat</strong> for the other <strong>PC</strong>.</p>
-</li>
-<li>
-<p>Now what happens when one of the routes is taking down, hypothetically the wire has a fault. Turn off the
-ports <strong>s/0/0/1</strong> for <strong>router 0</strong> and <strong>router 2</strong> and you should see two red triangles like figure 7.</p>
-<div align=center>
-<p><img src="./figures/figure_7.png" alt="" /></p>
-<p><strong>Figure 7 Disabled route</strong></p>
-</div>
-</li>
-<li>
-<p>Before redoing steps 9 10 and 11, what do you think will happen, what outputs might you see on the command prompt for ping and tracert.</p>
-</li>
-<li>
-<p>After completing steps 9,10 and 11, do the outputs confirm what you thought in step 13? If not why, and if so why?</p>
-</li>
-<li>
-<p>In each router add a password for each mode using the password command as seen in th lecture.</p>
-</li>
-<li>
-<p>For each router add the following banner motd</p>
-<div id="admonition-output" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-title">
+<div id="admonition-important" class="admonition admonish-tip" role="note" aria-labelledby="admonition-important-title">
 <div class="admonition-title">
-<div id="admonition-output-title">
-<p>Output</p>
+<div id="admonition-important-title">
+<p>Important</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-output"></a>
+<a class="admonition-anchor-link" href="#admonition-important"></a>
 </div>
 <div>
-<pre><code>This device is for authorized personnel only. If you have not been provided with permission to access this device - disconnect at once.
+<p>Download the <a href="./Static_Routing_1.pkt">Static_Routing_1.pkt</a> file for the following steps.</p>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
+</div>
+<div>
+<p>Remember to use the <code>?</code> if you are unsure on what to do next or how each command, argument and keyword works.</p>
+</div>
+</div>
+<h2 id="step-1---configuration-on-router-r1"><a class="header" href="#step-1---configuration-on-router-r1">Step 1 - CONFIGURATION ON ROUTER R1</a></h2>
+<p>We are going to assign ip address on interfaces of router R1.</p>
+<div id="admonition-terminal" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-title">
+<div class="admonition-title">
+<div id="admonition-terminal-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal"></a>
+</div>
+<div>
+<pre><code>Router&gt;enable 
+Router# config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)# int fa0/0 
+Router(config-if)# ip address 1.0.0.1 255.0.0.0 
+Router(config-if)# no shut 
+Router(config-if)# exit 
+Router(config)# int fa0/1 
+Router(config-if)# ip address 2.0.0.1 255.0.0.0 
+Router(config-if)# no shut
 </code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Now create a <code>#banner login #</code> message</p>
-<div id="admonition-output-1" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-1-title">
+<h2 id="step-2---configure-static-routing-on-router-r1"><a class="header" href="#step-2---configure-static-routing-on-router-r1">Step 2 - CONFIGURE STATIC ROUTING ON ROUTER R1</a></h2>
+<div id="admonition-terminal-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-1-title">
 <div class="admonition-title">
-<div id="admonition-output-1-title">
-<p>Output</p>
+<div id="admonition-terminal-1-title">
+<p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-output-1"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-1"></a>
 </div>
 <div>
-<pre><code>*** Login Required. Unauthorized use is prohibited *** 
+<pre><code>Router&gt;exit 
+Router#config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)#ip route 3.0.0.0 255.0.0.0 2.0.0.2 
+Router(config)#ip route 4.0.0.0 255.0.0.0 2.0.0.2
 </code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Additionally, an <code>EXEC</code> message too <code>#banner exec #</code></p>
-<div id="admonition-output-2" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-2-title">
+<h2 id="step-3---configuration-on-router-r2"><a class="header" href="#step-3---configuration-on-router-r2">Step 3 - CONFIGURATION ON ROUTER R2</a></h2>
+<div id="admonition-terminal-2" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-2-title">
 <div class="admonition-title">
-<div id="admonition-output-2-title">
-<p>Output</p>
+<div id="admonition-terminal-2-title">
+<p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-output-2"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-2"></a>
 </div>
 <div>
-<pre><code>*** Ensure that you update the system configuration *** 
-*** documentation after making system changes.      *** 
+<pre><code>Router&gt;exit 
+Router#config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)#int fa0/0 
+Router(config-if)#ip address 2.0.0.2 255.0.0.0 
+Router(config-if)#no shut 
+Router(config-if)#exit 
+Router(config)#int fa0/1 
+Router(config-if)#ip address 3.0.0.1 255.0.0.0 
+Router(config-if)#no shut
 </code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Finally test that all routers are password protected and that the messages for 16 to 18 are present.</p>
-</li>
-</ol>
-
+<h2 id="step-4---configure-static-routing-on-router-r2"><a class="header" href="#step-4---configure-static-routing-on-router-r2">Step 4 - CONFIGURE STATIC ROUTING ON ROUTER R2</a></h2>
+<div id="admonition-terminal-3" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-3-title">
+<div class="admonition-title">
+<div id="admonition-terminal-3-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-3"></a>
+</div>
+<div>
+<pre><code>Router&gt;enable 
+Router#config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)#ip route 1.0.0.0  255.0.0.0   2.0.0.1 
+Router(config)#ip route 4.0.0.0  255.0.0.0   3.0.0.2 
+</code></pre>
+</div>
+</div>
+<h2 id="step-5---configuration-on-router-r3"><a class="header" href="#step-5---configuration-on-router-r3">Step 5 - CONFIGURATION ON ROUTER R3</a></h2>
+<div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+<div class="admonition-title">
+<div id="admonition-terminal-4-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+</div>
+<div>
+<pre><code>Router&gt;enable 
+Router#config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)#int fa0/1 
+Router(config-if)#ip address 3.0.0.2 255.0.0.0 
+Router(config-if)#no shut 
+Router(config-if)#exit 
+Router(config)#int fa0/0  
+Router(config-if)#ip address 4.0.0.1 255.0.0.0 
+Router(config-if)#no shut
+</code></pre>
+</div>
+</div>
+<h2 id="step-6---configure-static-routing-on-router-r3"><a class="header" href="#step-6---configure-static-routing-on-router-r3">Step 6 - CONFIGURE STATIC ROUTING ON ROUTER R3</a></h2>
+<div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
+<div class="admonition-title">
+<div id="admonition-terminal-5-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
+</div>
+<div>
+<pre><code>Router&gt;exit 
+Router#config terminal 
+Enter configuration commands, one per line. End with CNTL/Z. 
+Router(config)#ip route  2.0.0.0 255.0.0.0 3.0.0.1 
+Router(config)#ip route 1.0.0.0 255.0.0.0 3.0.0.1 
+</code></pre>
+</div>
+</div>
+<h2 id="step-7--ping-and-tracert-pc0-to-pc1"><a class="header" href="#step-7--ping-and-tracert-pc0-to-pc1">Step 7 – PING and TRACERT PC0 TO PC1</a></h2>
+<div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
+<div class="admonition-title">
+<div id="admonition-terminal-6-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
+</div>
+<div>
+<pre><code>PC#&gt;ping #.#.#.# 
+PC#&gt;tracert #.#.#.# 
+</code></pre>
+</div>
+</div>
+<h2 id="step-8--expand-network"><a class="header" href="#step-8--expand-network">Step 8 – EXPAND NETWORK</a></h2>
+<p>Add another PC off of Router 2 in the Figure 1 and put it on network <code>5.0.0.0 </code></p>
+<p>Make it so that only PC on <code>4.0.0.2</code> can communication with the new PC on <code>5.0.0.0</code>, remember this will be two way communication.  There should be no route to <code>1.0.0.#</code> through <code>2.0.0.#.</code></p>
+<h2 id="step-9--expand-network-again"><a class="header" href="#step-9--expand-network-again">Step 9 – EXPAND NETWORK AGAIN</a></h2>
+<p>Add another Router and PC with a network of 6.0.0.0 off Router 3 and make it so that this new Router 4 allows communication between <code>1.0.0.#</code> and <code>6.0.0.#</code> only. No other PC can communicate to <code>6.0.0.0</code>.</p>
+<details id="admonition-question-is-this-possible" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-is-this-possible-title">
+<summary class="admonition-title">
+<div id="admonition-question-is-this-possible-title">
+<p>Question is this possible?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-is-this-possible"></a>
+</summary>
+<div>
+<p>You can download the solution here: <a href="./Static_Routing_2.pkt">Static_Routing_2.pkt</a></p>
+</div>
+</details>
                     </main>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../NetworkTroubleshooting/NetworkTroubleshooting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../RIP/RIP.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../StaticRouting/StaticRouting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../BGP/BGP.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -339,11 +378,11 @@ ports <strong>s/0/0/1</strong> for <strong>router 0</strong> and <strong>router 
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../NetworkTroubleshooting/NetworkTroubleshooting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../RIP/RIP.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../StaticRouting/StaticRouting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../BGP/BGP.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -1,0 +1,598 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Border Gateway Protocol - Network Routing Mangement</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="burgundy">Burgundy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="dracula">Dracula</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ecoFriend">EcoFriend</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="pinkrose">Pinkrose</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="space">Space</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="sustain">Sustain</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="tokyonight">Tokyonight</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Routing Mangement</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/BGP/BGP.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <h1 id="border-gateway-protocol"><a class="header" href="#border-gateway-protocol">Border Gateway Protocol</a></h1>
+<p>This is a Border Gateway Protocol routing lab in which we will learn how to configure BGP routing for a network having three routers inside packet tracer.</p>
+<p>Here in this Lab there are three Routers and a total of four network:</p>
+<ul>
+<li>
+<p>[1.] 192.101.1.0/24</p>
+</li>
+<li>
+<p>[2.] 8.8.8.0/24</p>
+</li>
+<li>
+<p>[3.] 10.2.3.0/24</p>
+</li>
+<li>
+<p>[4.] 192.168.1.0/24</p>
+</li>
+</ul>
+<p>Figure 1 illustrates how the setup should look.</p>
+<div align=center>
+<p><img src="./figures/figure_1.png" alt="" /></p>
+<p><strong>Figure 1: Static Routing</strong></p>
+</div>
+<div id="admonition-important" class="admonition admonish-tip" role="note" aria-labelledby="admonition-important-title">
+<div class="admonition-title">
+<div id="admonition-important-title">
+<p>Important</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-important"></a>
+</div>
+<div>
+<p>Download the <a href="./Static_Routing_1.pkt">Static_Routing_1.pkt</a> file for the following steps.</p>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
+</div>
+<div>
+<p>Remember to use the <code>?</code> if you are unsure on what to do next or how each command, argument and keyword works.</p>
+</div>
+</div>
+<h2 id="step-1---configuration-on-router-r1"><a class="header" href="#step-1---configuration-on-router-r1">Step 1 - CONFIGURATION ON ROUTER R1</a></h2>
+<div id="admonition-terminal" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-title">
+<div class="admonition-title">
+<div id="admonition-terminal-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal"></a>
+</div>
+<div>
+<pre><code>Router&gt;en 
+Router# show ip inter br 
+Router# show ip protocols 
+Router# show ip bgp 
+Router# config t 
+Router(config)# int gig0/0/0 
+Router(config-if)# ip address 192.101.1.1 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# exit 
+Router(config)# int gig0/0/1 
+Router(config-if)# ip address 8.8.8.1 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# end 
+Router# show ip inter br 
+</code></pre>
+</div>
+</div>
+<h2 id="step-2--configure-bgp-for-router-1"><a class="header" href="#step-2--configure-bgp-for-router-1">Step 2 – Configure BGP for Router 1</a></h2>
+<div id="admonition-terminal-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-1-title">
+<div class="admonition-title">
+<div id="admonition-terminal-1-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-1"></a>
+</div>
+<div>
+<pre><code>Router# config t 
+Router(config)# router ? 
+Router(config)# router bgp ? 
+Router(config)# router bgp 65001 
+Router(config-router)# neighbor ? 
+Router(config-router)# neighbor 8.8.8.2 ? 
+Router(config-router)# neighbor 8.8.8.2 remote-as 65002 
+Router(config-router)# ? 
+Router(config-router)# network 192.101.1.0 mask 255.255.255.0 
+Router(config-router)# end 
+Router# wr ? 
+Router# show ip bgp  
+</code></pre>
+</div>
+</div>
+<div id="admonition-output" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-title">
+<div class="admonition-title">
+<div id="admonition-output-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output"></a>
+</div>
+<div>
+<pre><code>BGP table version is 1, local router ID is 192.168.1.1 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-2" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-2-title">
+<div class="admonition-title">
+<div id="admonition-terminal-2-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-2"></a>
+</div>
+<div>
+<pre><code>Router# show ip bgp summary 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-1" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-1-title">
+<div class="admonition-title">
+<div id="admonition-output-1-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-1"></a>
+</div>
+<div>
+<pre><code>BGP router identifier 192.168.1.1, local AS number 65001 
+Neighbor   V   AS    MsgRcvd    MsgSent   TblVer  InQ   OutQ    Up/Down  State/PfxRcd           
+8.8.8.2    4  65002     0          0         1     0     0      00:45:46       4 
+</code></pre>
+</div>
+</div>
+<h2 id="step-3---configuration-on-router-r2"><a class="header" href="#step-3---configuration-on-router-r2">Step 3 - CONFIGURATION ON ROUTER R2</a></h2>
+<div id="admonition-terminal-3" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-3-title">
+<div class="admonition-title">
+<div id="admonition-terminal-3-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-3"></a>
+</div>
+<div>
+<pre><code>Router&gt;en 
+Router# show ip inter br 
+Router# show ip protocols 
+Router# show ip bgp 
+Router# config t 
+Router(config)# int gig0/0/0 
+Router(config-if)# ip address 8.8.8.2 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# exit 
+Router(config)# int gig0/0/1 
+Router(config-if)# ip address 10.2.3.1 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# end 
+</code></pre>
+</div>
+</div>
+<h2 id="step-4---configure-bgp-for-router-r2"><a class="header" href="#step-4---configure-bgp-for-router-r2">Step 4 - CONFIGURE BGP for ROUTER R2</a></h2>
+<div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+<div class="admonition-title">
+<div id="admonition-terminal-4-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+</div>
+<div>
+<pre><code>Router# config t 
+Router(config)# router ? 
+Router(config)# router bgp ? 
+Router(config)# router bgp 65002 
+Router(config-router)# neighbor ? 
+Router(config-router)# neighbor 8.8.8.1 ? 
+Router(config-router)# neighbor 8.8.8.1 remote-as 65001 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-2" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-2-title">
+<div class="admonition-title">
+<div id="admonition-output-2-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-2"></a>
+</div>
+<div>
+<pre><code>Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
+<div class="admonition-title">
+<div id="admonition-terminal-5-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
+</div>
+<div>
+<pre><code>Router(config-router)# neighbor 10.2.3.2 remote-as 65003 
+Router(config-router)# end 
+Router# wr ? 
+Router# show ip bgp  
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-3" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-3-title">
+<div class="admonition-title">
+<div id="admonition-output-3-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-3"></a>
+</div>
+<div>
+<pre><code>BGP table version is 1, local router ID is 192.168.1.1
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
+<div class="admonition-title">
+<div id="admonition-terminal-6-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
+</div>
+<div>
+<pre><code>Router# show ip bgp summary 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-4" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-4-title">
+<div class="admonition-title">
+<div id="admonition-output-4-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-4"></a>
+</div>
+<div>
+<pre><code>BGP table version is 3, local router ID is 10.2.3.1 
+Network              Next Hop       Metric    LocPrf      Weight      Path                    
+* 8.8.8.0/24         8.8.8.1          0         0           0        65001 i
+*&gt; 192.101.1.0/24    8.8.8.1          0         0           0        65001 i
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-7" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-7-title">
+<div class="admonition-title">
+<div id="admonition-terminal-7-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-7"></a>
+</div>
+<div>
+<pre><code>Router# wr 
+Router#ping 8.8.8.1 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-5" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-5-title">
+<div class="admonition-title">
+<div id="admonition-output-5-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-5"></a>
+</div>
+<div>
+<pre><code>Type escape sequence to abort. 
+Sending 5, 100-byte ICMP Echos to 8.8.8.1, timeout is 2 seconds: 
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/1 ms
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-8" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-8-title">
+<div class="admonition-title">
+<div id="admonition-terminal-8-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-8"></a>
+</div>
+<div>
+<pre><code>Router#tracer 192.101.1.2
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-6" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-6-title">
+<div class="admonition-title">
+<div id="admonition-output-6-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-6"></a>
+</div>
+<div>
+<pre><code>Type escape sequence to abort. 
+Tracing the route to 192.101.1.2 
+1   8.8.8.2         
+0 msec    0 msec    0 msec     
+2   192.168.1.2     0 msec    0 msec    0 msec    
+</code></pre>
+</div>
+</div>
+<h2 id="step-3---configuration-on-router-r3"><a class="header" href="#step-3---configuration-on-router-r3">Step 3 - CONFIGURATION ON ROUTER R3</a></h2>
+<div id="admonition-terminal-9" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-9-title">
+<div class="admonition-title">
+<div id="admonition-terminal-9-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-9"></a>
+</div>
+<div>
+<pre><code>Router&gt;en 
+Router# show ip inter br 
+Router# show ip protocols 
+Router# show ip bgp 
+Router# config t 
+Router(config)# int gig0/0/0 
+Router(config-if)# ip address 10.2.3.2 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# exit 
+Router(config)# int gig0/0/1 
+Router(config-if)# ip address 192.168.1.1 255.255.255.0 
+Router(config-if)# no shut 
+Router(config-if)# end 
+Router# show ip inter br
+</code></pre>
+</div>
+</div>
+<h2 id="step-4---configure-bgp-for-router-r3"><a class="header" href="#step-4---configure-bgp-for-router-r3">Step 4 - CONFIGURE BGP for ROUTER R3</a></h2>
+<div id="admonition-terminal-10" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-10-title">
+<div class="admonition-title">
+<div id="admonition-terminal-10-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-10"></a>
+</div>
+<div>
+<pre><code>Router# config t 
+Router(config)# router ? 
+Router(config)# router bgp ? 
+Router(config)# router bgp 65003 
+Router(config-router)# neighbor ? 
+Router(config-router)# neighbor 10.2.3.1 ? 
+Router(config-router)# neighbor 10.2.3.1 remote-as 65002
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-7" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-7-title">
+<div class="admonition-title">
+<div id="admonition-output-7-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-7"></a>
+</div>
+<div>
+<pre><code>Router(config-router)#%BGP-5-ADJCHANGE: neighbor 10.2.3.1 Up 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-11" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-11-title">
+<div class="admonition-title">
+<div id="admonition-terminal-11-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-11"></a>
+</div>
+<div>
+<pre><code>Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
+Router(config-router)# end 
+Router# wr ? 
+</code></pre>
+</div>
+</div>
+<h2 id="step-5-ping"><a class="header" href="#step-5-ping">Step 5 Ping</a></h2>
+<p>Use <strong>tracert</strong> on pc1 and pc2 to see if your route is setup correctly, you may need to ping a few times to make the
+route tables upate.</p>
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
+<div class="admonition-title">
+<div id="admonition-tip-1-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
+</div>
+<div>
+<p>You can download the working file here: <a href="./BGP_Routing_PT2.pkt">BGP_Routing_PT2.pkt</a></p>
+</div>
+</div>
+                    </main>
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../StaticRouting/StaticRouting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../StaticRouting/StaticRouting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

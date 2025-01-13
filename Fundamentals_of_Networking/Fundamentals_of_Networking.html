@@ -28,6 +28,11 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -110,11 +115,18 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="burgundy">Burgundy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="dracula">Dracula</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ecoFriend">EcoFriend</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="pinkrose">Pinkrose</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="space">Space</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="sustain">Sustain</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="tokyonight">Tokyonight</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
@@ -124,6 +136,12 @@
                     <h1 class="menu-title">Network Routing Management</h1>
 
                     <div class="right-buttons">
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/Fundamentals_of_Networking/Fundamentals_of_Networking.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -149,7 +167,7 @@
                 </script>
 
                 <div id="content" class="content">
-                    <main>
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <h1 id="fundamentals-of-networking"><a class="header" href="#fundamentals-of-networking">Fundamentals of Networking</a></h1>
 <h2 id="building-your-first-network"><a class="header" href="#building-your-first-network">Building your first network</a></h2>
 <p>As your first network lab you are going to look on performing basic configurations in network nodes and configuring a network. In detail you will be configure the switch management interface and implement basic connectivity between two user terminals. You are going to learn about basic but useful diagnostic commands for networking.</p>
@@ -175,10 +193,10 @@
 <p>Click PC1, and then click the Desktop tab.</p>
 </li>
 <li>
-<p>Click IP Configuration. In the Addressing Table above, you can see that the IP address for PC1 is \texttt{192.168.1.1} and the subnet mask is \texttt{255.255.255.0}. Enter this information for PC1 in the IP Configuration window.</p>
+<p>Click IP Configuration. In the Addressing Table above, you can see that the IP address for PC1 is <code>192.168.1.1</code> and the subnet mask is <code>255.255.255.0</code>. Enter this information for PC1 in the IP Configuration window.</p>
 </li>
 <li>
-<p>Repeat steps 1 and 2 for PC2 remembering that PC 2 has an IP address of \texttt{192.168.1.2}.</p>
+<p>Repeat steps 1 and 2 for PC2 remembering that PC 2 has an IP address of <code>192.168.1.2</code>.</p>
 </li>
 </ol>
 <p>Let us test if the two PCs can communicate:</p>
@@ -187,10 +205,20 @@
 <p>Click PC1. Close the IP Configuration window if it is still open. In the Desktop tab, click Command Prompt.</p>
 </li>
 <li>
-<p>Type the ping command and the IP address for PC2, and press Enter. Packet Tracer PC Command Line 1.0 PC&gt; \texttt{ping 192.168.1.2}</p>
+<p>Type the ping command and the IP address for PC2, and press Enter. Packet Tracer PC Command Line 1.0 PC&gt; <code>ping 192.168.1.2</code></p>
 </li>
 </ol>
+<div id="admonition-question" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-title">
+<div class="admonition-title">
+<div id="admonition-question-title">
+<p>Question</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question"></a>
+</div>
+<div>
 <p>Were you successful? Why or why not?</p>
+</div>
+</div>
 <hr />
 <h2 id="task-2-directed"><a class="header" href="#task-2-directed">Task 2 (Directed)</a></h2>
 <p>It is time to configure the switches:</p>
@@ -218,6 +246,14 @@
 <ol start="8">
 <li>
 <p>Run the following set of commands to secure your console:</p>
+<div id="admonition-terminal" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-title">
+<div class="admonition-title">
+<div id="admonition-terminal-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal"></a>
+</div>
+<div>
 <pre><code>S1-GR#configure terminal&lt;OR&gt;config t 
 Enter configuration commands, one per line. End with CNTL/Z. 
 S1-GR (config)#line console 0 
@@ -227,10 +263,20 @@ S1-GR (config-line)#exit
 S1-GR (config)#exit 
 %SYS-5-CONFIG_I: Configured from console by console S1-GR #
 </code></pre>
+</div>
+</div>
 <p>Exit everything and verify that the password has been set up correctly.</p>
 </li>
 <li>
 <p>Run the following set of command to secure privileged mode access:</p>
+<div id="admonition-terminal-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-1-title">
+<div class="admonition-title">
+<div id="admonition-terminal-1-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-1"></a>
+</div>
+<div>
 <pre><code>S1-GR &gt;enable 
 S1-GR #configure terminal 
 S1-GR (config)#enable password green 
@@ -238,14 +284,26 @@ S1-GR (config)#exit
 %SYS-5-CONFIG_I: Configured from console by console 
 S1-GR #
 </code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Again, verify the privileged mode is secure.</p>
 </li>
 <li>
 <p>Save configuration to NVRAM. To do this you would need to copy the running configuration to startup configuration:</p>
+<div id="admonition-terminal-2" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-2-title">
+<div class="admonition-title">
+<div id="admonition-terminal-2-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-2"></a>
+</div>
+<div>
 <pre><code>copy running-config startup-config
 </code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Repeat Steps for S2.</p>
@@ -254,7 +312,17 @@ S1-GR #
 <p>Try and verify if there is communications between the PCs and any of the switches</p>
 </li>
 </ol>
+<div id="admonition-question-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-1-title">
+<div class="admonition-title">
+<div id="admonition-question-1-title">
+<p>Question</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question-1"></a>
+</div>
+<div>
 <p>Were you successful? Why or why not?</p>
+</div>
+</div>
 <hr />
 <h2 id="task-3-not-directed"><a class="header" href="#task-3-not-directed">Task 3 (Not Directed)</a></h2>
 <ol start="14">
@@ -263,9 +331,16 @@ S1-GR #
 </li>
 <li>
 <p>Switches can be used as plug-and-play devices. This means that they do not need to be configured for them to work. Switches forward information from one port to another based on MAC addresses.</p>
-<details>
-<summary>If this is the case, why would we configure it with an IP address?</summary>
+<details id="admonition-if-this-is-the-case-why-would-we-configure-it-with-an-ip-address" class="admonition admonish-question" role="note" aria-labelledby="admonition-if-this-is-the-case-why-would-we-configure-it-with-an-ip-address-title">
+<summary class="admonition-title">
+<div id="admonition-if-this-is-the-case-why-would-we-configure-it-with-an-ip-address-title">
+<p>If this is the case, why would we configure it with an IP address?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-if-this-is-the-case-why-would-we-configure-it-with-an-ip-address"></a>
+</summary>
+<div>
 <p>To connect remotely to a switch, you need to assign an IP address to it. The default configuration on the switch is to have the management of the switch controlled through VLAN 1.</p>
+</div>
 </details>
 </li>
 <li>
@@ -279,8 +354,14 @@ S1-GR #
 <li><code>no shutdown</code></li>
 </ul>
 </li>
-<li><details>
-  <summary>Solution</summary>
+<li> <details id="admonition-solution" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-solution-title">
+ <summary class="admonition-title">
+ <div id="admonition-solution-title">
+<p>Solution</p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-solution"></a>
+ </summary>
+ <div>
 <pre><code>S1# configure terminal
 
 Enter configuration commands, one per line.  End with CNTL/Z.
@@ -299,7 +380,8 @@ S1(config-if)# exit
 
 S1#
 </code></pre>
-  </details>
+ </div>
+ </details>
 </li>
 </ul>
 </li>
@@ -312,9 +394,16 @@ S1#
 <ol start="18">
 <li>
 <p>Question:</p>
-<details>
-<summary>Why do you enter the `no shutdown` command?</summary>
+<details id="admonition-why-do-you-enter-the-no-shutdown-command" class="admonition admonish-question" role="note" aria-labelledby="admonition-why-do-you-enter-the-no-shutdown-command-title">
+<summary class="admonition-title">
+<div id="admonition-why-do-you-enter-the-no-shutdown-command-title">
+<p>Why do you enter the <code>no shutdown</code> command?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-why-do-you-enter-the-no-shutdown-command"></a>
+</summary>
+<div>
 <p>The <code>no shutdown</code> command administratively places the interface in an active state.</p>
+</div>
 </details>
 </li>
 <li>
@@ -339,9 +428,16 @@ S1#
 </li>
 <li>
 <p>Question:</p>
-<details>
-<summary>Which command is used to save the configuration file in RAM to NVRAM?</summary>
+<details id="admonition-which-command-is-used-to-save-the-configuration-file-in-ram-to-nvram" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-which-command-is-used-to-save-the-configuration-file-in-ram-to-nvram-title">
+<summary class="admonition-title">
+<div id="admonition-which-command-is-used-to-save-the-configuration-file-in-ram-to-nvram-title">
+<p>Which command is used to save the configuration file in RAM to NVRAM?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-which-command-is-used-to-save-the-configuration-file-in-ram-to-nvram"></a>
+</summary>
+<div>
 <p><code>copy running-config startup-config</code></p>
+</div>
 </details>
 </li>
 <li>
@@ -366,21 +462,34 @@ S1#
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><strong>Note:</strong></p>
-<blockquote>
+<div id="admonition-info" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-title">
+<div class="admonition-title">
+<div id="admonition-info-title">
+<p>Info</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-info"></a>
+</div>
+<div>
 <ul>
-<li>You can also use the ping command on the switch CLI and on PC2.</li>
-<li>All pings should be successful.</li>
-<li>If your first ping result is 80%, try again. It should now be 100%.</li>
-<li>You will learn why a ping may sometimes fail the first time later in your studies.</li>
-<li>If you are unable to ping any of the devices, recheck your configuration for errors.</li>
+<li>
+<p>You can also use the ping command on the switch CLI and on PC2.</p>
+</li>
+<li>
+<p>All pings should be successful.</p>
+</li>
+<li>
+<p>If your first ping result is 80%, try again. It should now be 100%.</p>
+</li>
+<li>
+<p>You will learn why a ping may sometimes fail the first time later in your studies.</p>
+</li>
+<li>
+<p>If you are unable to ping any of the devices, recheck your configuration for errors.</p>
+</li>
 </ul>
-</blockquote>
-</blockquote>
-
+</div>
+</div>
                     </main>
-
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="../IPV4_Subnetting/IPV4_Subnetting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
@@ -425,6 +534,7 @@ S1#
         <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="../theme/pagetoc.js"></script>
 
 
     </div>

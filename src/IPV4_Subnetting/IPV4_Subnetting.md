@@ -29,7 +29,7 @@ Below you will find some exercises to get you familiar and at ease with calculat
 
 ~~~admonish question collapsible=true title='**Netmask**'
       
-    - The subnet mask for `/28` is `255.255.255.240` (in binary: `11111111.11111111.11111111.11110000`)
+- The subnet mask for `/28` is `255.255.255.240` (in binary: `11111111.11111111.11111111.11110000`)
 
 ~~~
 

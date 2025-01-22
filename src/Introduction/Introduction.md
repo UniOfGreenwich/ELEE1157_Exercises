@@ -1,14 +1,22 @@
 # Introduction 
 
+<<<<<<< HEAD
 This mdBook will grow over the duration of this module with new labs/workshops and general content needed to test and increase your knowledge of Networking and Routing Management. 
 
+=======
+This mdBook will grow over the duration of this module with new labs/workshops and general content needed to test and increase your knowledge of ... . 
+>>>>>>> 129c410 (init: initial commit)
 
 <table>
 <tr>
 <td>
 
 The mdBook accessed outside of blackboard and is mobile and tablet friendly. :
+<<<<<<< HEAD
 - [https://uniofgreenwich.github.io/ELEE1157_Exercises/](https://uniofgreenwich.github.io/ELEE1157_Exercises/Introduction.html)
+=======
+- [https://uniofgreenwich.github.io/MD_Book_Template/](https://uniofgreenwich.github.io/MD_Book_Template/Introduction.html)
+>>>>>>> 129c410 (init: initial commit)
 - Or scan the QR code on the right:
 </td>
 <td>

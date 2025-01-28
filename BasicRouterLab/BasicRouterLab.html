@@ -1,0 +1,1119 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Basic Router Lab - Network Routing Management</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/pagetoc.css">
+        <link rel="stylesheet" href=".././theme/css/mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/css/code.css">
+        <link rel="stylesheet" href=".././theme/css/terminal.css">
+        <link rel="stylesheet" href=".././theme/css/output.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="burgundy">Burgundy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="dracula">Dracula</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ecoFriend">EcoFriend</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="pinkrose">Pinkrose</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="space">Space</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="sustain">Sustain</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="tokyonight">Tokyonight</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Routing Management</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/uniofgreenwich/ELEE1157_Exercises/edit/main/src/BasicRouterLab/BasicRouterLab.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main><div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <h1 id="basic-router-lab"><a class="header" href="#basic-router-lab">Basic Router Lab</a></h1>
+<h2 id="1-building-your-first-network"><a class="header" href="#1-building-your-first-network">1. Building your first network</a></h2>
+<p>As your first network lab you are going to | Look on performing basic configurations in network nodes and configuring a network. In detail you will be configure the switch management interface and implement basic connectivity between two user terminals. You are going to learn about basic but useful diagnostic commands for networking.</p>
+<div align=center>
+<p><img src="./figure/task_1.png" alt="" /></p>
+<p><em>Figure 1 Basic topo| Logy</em></p>
+<p></p>
+<p><em>Table 1 Addressing table.</em></p>
+<div class="table-wrapper"><table><thead><tr><th>Device</th><th>Interface</th><th>IP Address / Prefix</th><th>Default Gateway</th></tr></thead><tbody>
+<tr><td>R1</td><td>G0/0/0</td><td>192.168.0.1 /24</td><td>N/A</td></tr>
+<tr><td></td><td></td><td>2001:db8:acad::1 /64</td><td></td></tr>
+<tr><td></td><td></td><td>fe80::1</td><td></td></tr>
+<tr><td></td><td>G0/0/1</td><td>192.168.1.1 /24</td><td></td></tr>
+<tr><td></td><td></td><td>2001:db8:acad:1::1 /64</td><td></td></tr>
+<tr><td></td><td></td><td>fe80::1</td><td></td></tr>
+<tr><td></td><td>Loopback0</td><td>10.0.0.1 /24</td><td></td></tr>
+<tr><td></td><td></td><td>2001:db8:acad:2::1 /64</td><td></td></tr>
+<tr><td></td><td></td><td>fe80::1</td><td></td></tr>
+<tr><td>PC-A</td><td>NIC</td><td>192.168.1.10 /24</td><td>192.168.1.1</td></tr>
+<tr><td></td><td></td><td>2001:db8:acad:1::10 /64</td><td>fe80::1</td></tr>
+<tr><td>PC-B</td><td>NIC</td><td>192.168.0.10 /24</td><td>192.168.0.1</td></tr>
+<tr><td></td><td></td><td>2001:db8:acad::10 /64</td><td>fe80::1</td></tr>
+</tbody></table>
+</div></div>
+<div id="admonition-info" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-title">
+<div class="admonition-title">
+<div id="admonition-info-title">
+<p>Info</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-info"></a>
+</div>
+<div>
+<ul>
+<li>
+<p>If you are unable to construct the network you can download the solution file here:</p>
+</li>
+<li>
+<p><a href="./Basic_Router_Lab_-_Solutions.pkt">Basic_Router_Lab_-_Solutions.pkt</a></p>
+</li>
+</ul>
+</div>
+</div>
+<h2 id="scenario"><a class="header" href="#scenario">Scenario</a></h2>
+<p>This is a comprehensive lab to review previously covered IOS router commands. In Parts 1 and 2, you will cable the equipment and complete basic configurations and interface settings on the router.</p>
+<p>In Part 3, you will use SSH to connect to the router remotely and utilize the IOS commands to retrieve information from the device to answer questions about the router.</p>
+<hr />
+<h2 id="part-1-set-up-the-topology-and-initialise-devices"><a class="header" href="#part-1-set-up-the-topology-and-initialise-devices">Part 1: Set Up the Topology and Initialise Devices</a></h2>
+<ol>
+<li>
+<p>Cable the network as shown in the topology.</p>
+<ul>
+<li>Attach the devices as shown in the topology diagram, and cable as necessary.</li>
+<li>Power on all the devices in the topology.</li>
+</ul>
+</li>
+<li>
+<p>Initialize and reload the router and switch.</p>
+</li>
+</ol>
+<hr />
+<h2 id="part-2-configure-devices-and-verify-connectivity"><a class="header" href="#part-2-configure-devices-and-verify-connectivity">Part 2: Configure Devices and Verify Connectivity</a></h2>
+<ol start="3">
+<li>
+<p>Configure the PC interfaces.</p>
+<ul>
+<li>
+<p>Configure the IP address, subnet mask, and default gateway settings on PC-A.</p>
+</li>
+<li>
+<p>Configure the IP address, subnet mask, and default gateway settings on PC-B.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Configure the router</p>
+<ul>
+<li>
+<p>Console into the router and enable privileged <code>EXEC</code> mode.</p>
+<div id="admonition-terminal" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-title">
+<div class="admonition-title">
+<div id="admonition-terminal-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal"></a>
+</div>
+<div>
+<pre><code>router&gt; enable
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter configuration mode.</p>
+<div id="admonition-terminal-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-1-title">
+<div class="admonition-title">
+<div id="admonition-terminal-1-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-1"></a>
+</div>
+<div>
+<pre><code>router# config terminal
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Assign a device name to the router.</p>
+<div id="admonition-terminal-2" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-2-title">
+<div class="admonition-title">
+<div id="admonition-terminal-2-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-2"></a>
+</div>
+<div>
+<pre><code>router(config)# hostname R1
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the router’s domain name as <code>ccna-lab.com</code>.</p>
+<div id="admonition-terminal-3" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-3-title">
+<div class="admonition-title">
+<div id="admonition-terminal-3-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-3"></a>
+</div>
+<div>
+<pre><code>R1(config)# ip domain name ccna-lab.com
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.</p>
+<div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+<div class="admonition-title">
+<div id="admonition-terminal-4-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+</div>
+<div>
+<pre><code>R1(config)# no ip domain lookup
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Encrypt the plaintext passwords.</p>
+<div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
+<div class="admonition-title">
+<div id="admonition-terminal-5-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
+</div>
+<div>
+<pre><code>R1(config)# service password-encryption
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the system to require a minimum 12-character password.</p>
+<div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
+<div class="admonition-title">
+<div id="admonition-terminal-6-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
+</div>
+<div>
+<pre><code>R1(config)# security passwords min-length 12
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the username <code>SSHadmin</code> with an encrypted password of <code>55Hadm!n2020</code>.</p>
+<div id="admonition-terminal-7" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-7-title">
+<div class="admonition-title">
+<div id="admonition-terminal-7-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-7"></a>
+</div>
+<div>
+<pre><code>R1(config)# username SSHadmin secret 55Hadm!n2020
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate a set of crypto keys with a 1024 bit modulus</p>
+<div id="admonition-terminal-8" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-8-title">
+<div class="admonition-title">
+<div id="admonition-terminal-8-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-8"></a>
+</div>
+<div>
+<pre><code>R1(config)# crypto key generate rsa
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Assign the privileged <code>EXEC</code> password to <code>$cisco!PRIV*</code></p>
+<div id="admonition-terminal-9" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-9-title">
+<div class="admonition-title">
+<div id="admonition-terminal-9-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-9"></a>
+</div>
+<div>
+<pre><code>R1(config)# enable secret $cisco!PRIV*
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Assign <code>$cisco!!CON*</code> as the console password, configure sessions to disconnect after four minutes of inactivity, and enable login.</p>
+<div id="admonition-terminal-10" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-10-title">
+<div class="admonition-title">
+<div id="admonition-terminal-10-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-10"></a>
+</div>
+<div>
+<pre><code>R1(config)# line console 0
+R1(config-line)# password $cisco!!CON*
+R1(config-line)# exec-timeout 4 0
+R1(config-line)# login
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Assign <code>$cisco!!VTY*</code> as the <code>vty</code> password, configure the <code>vty</code> lines to accept SSH connections only, configure sessions to disconnect after four minutes of inactivity, and enable login using the local database.</p>
+<div id="admonition-terminal-11" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-11-title">
+<div class="admonition-title">
+<div id="admonition-terminal-11-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-11"></a>
+</div>
+<div>
+<pre><code>R1(config)# line vty 0 4
+R1(config-line)# password $cisco!!VTY*
+R1(config-line)# exec-timeout 4 0
+R1(config-line)# transport input ssh
+R1(config-line)# login local
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a banner that warns anyone accessing the device that unauthorized access is prohibited.</p>
+<div id="admonition-terminal-12" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-12-title">
+<div class="admonition-title">
+<div id="admonition-terminal-12-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-12"></a>
+</div>
+<div>
+<pre><code>R1(config)# banner motd $ Authorized Users Only! $
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enable IPv6 Routing</p>
+<div id="admonition-terminal-13" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-13-title">
+<div class="admonition-title">
+<div id="admonition-terminal-13-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-13"></a>
+</div>
+<div>
+<pre><code>R1(config)# ipv6 unicast-routing
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure all three interfaces on the router with the IPv4 and IPv6 addressing information from the addressing table above. Configure all three interfaces with descriptions. Activate all three interfaces.</p>
+<div id="admonition-terminal-14" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-14-title">
+<div class="admonition-title">
+<div id="admonition-terminal-14-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-14"></a>
+</div>
+<div>
+<pre><code>R1(config)# interface g0/0/0
+R1(config-if)# ip address 192.168.0.1 255.255.255.0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# ipv6 address 2001:db8:acad::1/64
+R1(config-if)# description Connection to PC-B
+R1(config-if)# no shutdown
+R1(config-if)# exit
+R1(config)# interface g0/0/1
+R1(config-if)# ip address 192.168.1.1 255.255.255.0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# ipv6 address 2001:db8:acad:1::1/64
+R1(config-if)# description Connection to S1
+R1(config-if)# no shutdown
+R1(config-if)# exit
+R1(config)# interface loopback0
+R1(config-if)# ip address 10.0.0.1 255.255.255.0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# ipv6 address 2001:db8:acad:2::1/64
+R1(config-if)# description loopback adapter
+R1(config-if)# no shutdown
+R1(config-if)# exit
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The router should not allow vty logins for two minutes if three failed login attempts occur within 60 seconds.</p>
+<div id="admonition-terminal-15" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-15-title">
+<div class="admonition-title">
+<div id="admonition-terminal-15-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-15"></a>
+</div>
+<div>
+<pre><code>R1(config)# login block-for 120 attempts 3 within 60
+R1(config)# exit
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the clock on the router.</p>
+<div id="admonition-terminal-16" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-16-title">
+<div class="admonition-title">
+<div id="admonition-terminal-16-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-16"></a>
+</div>
+<div>
+<pre><code>R1# clock set 15:20:00 5 Jan 2024
+</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save the running configuration to the startup configuration file.</p>
+<div id="admonition-terminal-17" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-17-title">
+<div class="admonition-title">
+<div id="admonition-terminal-17-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-17"></a>
+</div>
+<div>
+<pre><code>R1# copy running-config startup-config
+</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li> <details id="admonition-what-would-be-the-result-of-reloading-the-router-prior-to-completing-the-copy-running-config-startup-config-command" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-would-be-the-result-of-reloading-the-router-prior-to-completing-the-copy-running-config-startup-config-command-title">
+ <summary class="admonition-title">
+ <div id="admonition-what-would-be-the-result-of-reloading-the-router-prior-to-completing-the-copy-running-config-startup-config-command-title">
+<p>What would be the result of reloading the router prior to completing the <code>copy running-config startup-config</code> command?</p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-what-would-be-the-result-of-reloading-the-router-prior-to-completing-the-copy-running-config-startup-config-command"></a>
+ </summary>
+ <div>
+<ul>
+<li>The contents of the running configuration in RAM would be erased during reload. As a result, the router would boot up without a startup configuration and the user would be asked if they would like to enter initial configuration dialog.</li>
+</ul>
+ </div>
+ </details>
+</li>
+<li>
+<p>Verify network connectivity.</p>
+<ul>
+<li>Using the command line at PC-A, ping the IPv4 and IPv6 addresses for PC-B.</li>
+</ul>
+ <div id="admonition-info-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-1-title">
+ <div class="admonition-title">
+ <div id="admonition-info-1-title">
+<p>Info</p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-info-1"></a>
+ </div>
+ <div>
+<ul>
+<li>It may be necessary to disable the PCs firewall.</li>
+</ul>
+ </div>
+ </div>
+</li>
+<li>
+<p>Remotely access R1 from PC-A using the Tera Term SSH client.</p>
+<ul>
+<li>Using Tera Term on PC-A, open an <code>SSH</code> session to the <code>R1</code> Loopback interface IPv4 address. Ensure that the SSH radio button is selected and then click OK to connect to the router. Log in as <code>SSHadmin</code> with the password <code>55Hadm!n2020</code>.</li>
+</ul>
+</li>
+<li>
+<p>Using Tera Term on PC-A, open an SSH session to the R1 Loopback interface IPv6 address.</p>
+<ul>
+<li>Ensure that the SSH radio button is selected and then click OK to connect to the router.</li>
+<li>Log in as <code>SSHadmin</code> with the password <code>55Hadm!n2020</code>.</li>
+</ul>
+ <div id="admonition-info-2" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-2-title">
+ <div class="admonition-title">
+ <div id="admonition-info-2-title">
+<p>Info</p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-info-2"></a>
+ </div>
+ <div>
+<ul>
+<li>The IPv6 address should be surrounded with square brackets, i.e. [IPv6 address]</li>
+</ul>
+ </div>
+ </div>
+</li>
+<li> <details id="admonition-why-is-the-telnet-protocol-considered-to-be-a-security-risk" class="admonition admonish-question" role="note" aria-labelledby="admonition-why-is-the-telnet-protocol-considered-to-be-a-security-risk-title">
+ <summary class="admonition-title">
+ <div id="admonition-why-is-the-telnet-protocol-considered-to-be-a-security-risk-title">
+<p>Why is the Telnet protocol considered to be a security risk?</p>
+ </div>
+ <a class="admonition-anchor-link" href="#admonition-why-is-the-telnet-protocol-considered-to-be-a-security-risk"></a>
+ </summary>
+ <div>
+<p>A Telnet session can be seen in plaintext. It is not encrypted. Passwords can easily be seen using a packet sniffer.</p>
+ </div>
+ </details>
+</li>
+</ol>
+<hr />
+<h2 id="part-3-display-router-information"><a class="header" href="#part-3-display-router-information">Part 3: Display Router Information</a></h2>
+<p>In Part 3, you will use show commands from an SSH session to retrieve information from the router.</p>
+<h3 id="establish-an-ssh-session-to-r1"><a class="header" href="#establish-an-ssh-session-to-r1">Establish an SSH session to R1.</a></h3>
+<ol start="10">
+<li>Using Tera Term on PC-B, open an SSH session to the R1 Loopback interface IPv6 address and log in as <code>SSHadmin</code> with the password <code>55Hadm!n2020</code>.</li>
+</ol>
+<h3 id="retrieve-important-hardware-and-software-information"><a class="header" href="#retrieve-important-hardware-and-software-information">Retrieve important hardware and software information.</a></h3>
+<ol start="11">
+<li>
+<p>Use the show version command to answer questions about the route</p>
+<div id="admonition-terminal-18" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-18-title">
+<div class="admonition-title">
+<div id="admonition-terminal-18-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-18"></a>
+</div>
+<div>
+<pre><code>R1# show version
+</code></pre>
+</div>
+</div>
+</li>
+<li><details id="admonition-what-is-the-name-of-the-ios-image-that-the-router-is-running" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-name-of-the-ios-image-that-the-router-is-running-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-name-of-the-ios-image-that-the-router-is-running-title">
+<p>What is the name of the IOS image that the router is running?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-name-of-the-ios-image-that-the-router-is-running"></a>
+</summary>
+<div>
+<p>Image version may vary: <code>bootflash:/isr4300-universalk9.03.16.05.S.155-3.S5-ext.SPA.bin</code></p>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="13">
+<li><details id="admonition-how-much-non-volatile-random-access-memory-nvram-does-the-router-have" class="admonition admonish-question" role="note" aria-labelledby="admonition-how-much-non-volatile-random-access-memory-nvram-does-the-router-have-title">
+<summary class="admonition-title">
+<div id="admonition-how-much-non-volatile-random-access-memory-nvram-does-the-router-have-title">
+<p>How much non-volatile random-access memory (NVRAM) does the router have?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-how-much-non-volatile-random-access-memory-nvram-does-the-router-have"></a>
+</summary>
+<div>
+<p>Answers may vary: 32768K bytes of NVRAM</p>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="14">
+<li><details id="admonition-how-much-flash-memory-does-the-router-have" class="admonition admonish-question" role="note" aria-labelledby="admonition-how-much-flash-memory-does-the-router-have-title">
+<summary class="admonition-title">
+<div id="admonition-how-much-flash-memory-does-the-router-have-title">
+<p>How much Flash memory does the router have?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-how-much-flash-memory-does-the-router-have"></a>
+</summary>
+<div>
+<p>Answers may vary: 3223551K bytes of flash memory</p>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="15">
+<li>
+<p>The <code>show</code> commands often provide multiple screens of outputs. Filtering the output allows a user to display certain sections of the output. To enable the filtering command, enter a pipe (|) character after a <code>show</code> command, followed by a filtering parameter and a filtering expression. You can match the output to the filtering statement by using the <code>include</code> keyword to display all lines from the output that contain the filtering expression. Filter the <code>show version</code> command, using <code>show version | include register</code> to answer the following question:</p>
+<ul>
+<li><details id="admonition-what-is-the-boot-process-for-the-router-on-the-next-reload" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-boot-process-for-the-router-on-the-next-reload-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-boot-process-for-the-router-on-the-next-reload-title">
+<p>What is the boot process for the router on the next reload?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-boot-process-for-the-router-on-the-next-reload"></a>
+</summary>
+<div>
+<ul>
+<li>
+<p>Answers may vary. In most cases (<code>0x2102</code>), the router will undergo a normal boot, load the IOS from the Flash memory, and load the startup configuration from the <code>NVRAM</code> if present. If the config register is <code>0x2142</code>, the router will bypass the startup config and begin at the <code>user-mode</code> command prompt. If the initial boot fails, the router goes into <code>ROMMON</code> mode.</p>
+<pre><code>R1# show version | include register
+Configuration register is 0x2142 (will be 0x2102 at next reload)
+</code></pre>
+</li>
+</ul>
+</div>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p>Display the start up configuration using <code>show startup-config</code></p>
+<details id="admonition-hidden-for-ease-of-viewing" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-hidden-for-ease-of-viewing-title">
+<summary class="admonition-title">
+<div id="admonition-hidden-for-ease-of-viewing-title">
+<p>Hidden for ease of viewing...</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-hidden-for-ease-of-viewing"></a>
+</summary>
+<div>
+<pre><code>R1# show start
+Using 1997 out of 33554432 bytes
+!
+! Last configuration change at 15:20:18 UTC Thu Sep 5 2019
+! NVRAM config last updated at 15:25:17 UTC Thu Sep 5 2019
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+security passwords min-length 12
+enable secret 5 $1$b2iA$/7Hj3HRmBXTbOESxm1yiG0
+!
+no aaa new-model
+!
+no ip domain lookup
+ip domain name ccna-lab.com
+!
+login block-for 120 attempts 3 within 60
+login on-success log
+!
+subscriber templating
+!
+ipv6 unicast-routing
+multilink bundle-name authenticated
+!
+license udi pid ISR4221/K9 sn FGL221693BV
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+username SSHadmin secret 5 $1$6HtR$T0QPZWbzp6bz3g6iwmZrP1
+!
+redundancy
+mode none
+!
+interface Loopback0
+description loopback adapter
+ip address 10.0.0.1 255.255.255.0
+ipv6 address FE80::1 link-local
+ipv6 address 2001:DB8:ACAD:2::1/64
+!
+interface GigabitEthernet0/0/0
+description Connection to PC-B
+ip address 192.168.0.1 255.255.255.0
+negotiation auto
+ipv6 address FE80::1 link-local
+ipv6 address 2001:DB8:ACAD::1/64
+!
+interface GigabitEthernet0/0/1
+description Connection to S1
+ip address 192.168.1.1 255.255.255.0
+negotiation auto
+ipv6 address FE80::1 link-local
+ipv6 address 2001:DB8:ACAD:1::1/64
+!
+interface Serial0/1/0
+no ip address
+!
+interface Serial0/1/1
+no ip address
+!
+ip forward-protocol nd
+no ip http server
+ip http secure-server
+!
+control-plane
+!
+banner motd ^C Authorized Users Only! ^C
+!
+line con 0
+exec-timeout 4 0
+password 7 145311021F07256A650B1C1B68
+logging synchronous
+login
+transport input none
+stopbits 1
+line aux 0
+stopbits 1
+line vty 0 4
+exec-timeout 4 0
+password 7 15560805172924656905011B59
+login local
+transport input ssh
+!
+end
+</code></pre>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="17">
+<li><details id="admonition-how-are-passwords-presented-in-the-output" class="admonition admonish-question" role="note" aria-labelledby="admonition-how-are-passwords-presented-in-the-output-title">
+<summary class="admonition-title">
+<div id="admonition-how-are-passwords-presented-in-the-output-title">
+<p>How are passwords presented in the output?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-how-are-passwords-presented-in-the-output"></a>
+</summary>
+<div>
+<ul>
+<li>
+<p>Passwords are encrypted due to the service password-encryption command.</p>
+</li>
+<li>
+<p>Use the <code>show startup-config | section vty</code> command.</p>
+<pre><code>R1# show startup-config | section vty
+line vty 0 4
+exec-timeout 4 0
+password 7 15560805172924656905011B59
+login local
+transport input ssh
+</code></pre>
+</li>
+</ul>
+</div>
+</details>
+</li>
+<li>
+<p>Display the routing table on the router using the <code>show ip route</code> command on the router to answer the following questions:</p>
+<details id="admonition-hidden-for-ease-of-viewing-1" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-hidden-for-ease-of-viewing-1-title">
+<summary class="admonition-title">
+<div id="admonition-hidden-for-ease-of-viewing-1-title">
+<p>Hidden for ease of viewing...</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-hidden-for-ease-of-viewing-1"></a>
+</summary>
+<div>
+<pre><code>R1# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+    D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+    N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+    E1 - OSPF external type 1, E2 - OSPF external type 2
+    i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+    ia - IS-IS inter area, * - candidate default, U - per-user static route
+    o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+    a - application route
+    + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is not set
+
+    10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        10.0.0.0/24 is directly connected, Loopback0
+L        10.0.0.1/32 is directly connected, Loopback0
+    192.168.0.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.0.0/24 is directly connected, GigabitEthernet0/0/0
+L        192.168.0.1/32 is directly connected, GigabitEthernet0/0/0
+    192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.1.0/24 is directly connected, GigabitEthernet0/0/1
+L        192.168.1.1/32 is directly connected, GigabitEthernet0/0/1
+</code></pre>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="19">
+<li><details id="admonition-what-code-is-used-in-the-routing-table-to-indicate-a-directly-connected-network" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-code-is-used-in-the-routing-table-to-indicate-a-directly-connected-network-title">
+<summary class="admonition-title">
+<div id="admonition-what-code-is-used-in-the-routing-table-to-indicate-a-directly-connected-network-title">
+<p>What code is used in the routing table to indicate a directly connected network?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-code-is-used-in-the-routing-table-to-indicate-a-directly-connected-network"></a>
+</summary>
+<div>
+<ul>
+<li>The C designates a directly connected subnet.</li>
+<li>An L designates a local interface.</li>
+<li>Both answers are correct</li>
+</ul>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="20">
+<li><details id="admonition-how-many-route-entries-are-coded-with-a-c-code-in-the-routing-table" class="admonition admonish-question" role="note" aria-labelledby="admonition-how-many-route-entries-are-coded-with-a-c-code-in-the-routing-table-title">
+<summary class="admonition-title">
+<div id="admonition-how-many-route-entries-are-coded-with-a-c-code-in-the-routing-table-title">
+<p>How many route entries are coded with a C code in the routing table?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-how-many-route-entries-are-coded-with-a-c-code-in-the-routing-table"></a>
+</summary>
+<div>
+<ul>
+<li>3</li>
+</ul>
+</div>
+</details>
+</li>
+<li>
+<p>Display a summary list of the interfaces on the router using the <code>show ip interface brief</code> command on the router to answer the following question:</p>
+<div id="admonition-terminal-19" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-19-title">
+<div class="admonition-title">
+<div id="admonition-terminal-19-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-19"></a>
+</div>
+<div>
+<pre><code>R1# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   192.168.0.1     YES manual up                    up
+GigabitEthernet0/0/1   192.168.1.1     YES manual up                    up
+Serial0/1/0            unassigned      YES unset  up                    up
+Serial0/1/1            unassigned      YES unset  up                    up
+Loopback0              10.0.0.1        YES manual up                    up
+</code></pre>
+</div>
+</div>
+</li>
+<li><details id="admonition-what-command-changed-the-status-of-the-gigabit-ethernet-ports-from-administratively-down-to-up" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-command-changed-the-status-of-the-gigabit-ethernet-ports-from-administratively-down-to-up-title">
+<summary class="admonition-title">
+<div id="admonition-what-command-changed-the-status-of-the-gigabit-ethernet-ports-from-administratively-down-to-up-title">
+<p>What command changed the status of the Gigabit Ethernet ports from administratively down to up?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-command-changed-the-status-of-the-gigabit-ethernet-ports-from-administratively-down-to-up"></a>
+</summary>
+<div>
+<pre><code>no shutdown
+</code></pre>
+</div>
+</details>
+</li>
+<li>
+<p>Use the <code>show ipv6 int brief</code> command to verify IPv6 settings on R1.</p>
+<div id="admonition-terminal-20" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-20-title">
+<div class="admonition-title">
+<div id="admonition-terminal-20-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-20"></a>
+</div>
+<div>
+<pre><code>R1# show ipv6 interface brief
+GigabitEthernet0/0/0   [up/up]
+    FE80::1
+    2001:DB8:ACAD::1
+GigabitEthernet0/0/1   [up/up]
+    FE80::1
+    2001:DB8:ACAD:1::1
+Serial0/1/0            [up/up]
+    unassigned
+Serial0/1/1            [up/up]
+    unassigned
+Loopback0              [up/up]
+    FE80::1
+    2001:DB8:ACAD:2::1
+</code></pre>
+</div>
+</div>
+</li>
+<li><details id="admonition-what-is-the-meaning-of-the-upup-part-of-the-output" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-meaning-of-the-upup-part-of-the-output-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-meaning-of-the-upup-part-of-the-output-title">
+<p>What is the meaning of the [up/up] part of the output?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-meaning-of-the-upup-part-of-the-output"></a>
+</summary>
+<div>
+<p>The [up/up] status reflects the Layer 1 and Layer 2 status of the interface and does not rely on Layer 3 for status.</p>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="25">
+<li>On PC-B, change its configuration so that it no longer has a static IPv6 address. You may have to reboot the machine. Then, issue the <code>ipconfig</code> command on PC-B to examine the IPv6 configuration.</li>
+</ol>
+<p></p>
+<ol start="26">
+<li><details id="admonition-what-is-the-ipv6-address-assigned-to-pc-b" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-ipv6-address-assigned-to-pc-b-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-ipv6-address-assigned-to-pc-b-title">
+<p>What is the IPv6 address assigned to PC-B?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-ipv6-address-assigned-to-pc-b"></a>
+</summary>
+<div>
+<ul>
+<li>Answers will vary. IPv6 address of <code>2001:db8:acad:d428:7de2:997c:b05a</code></li>
+</ul>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="27">
+<li><details id="admonition-what-is-the-default-gateway-assigned-to-pc-b" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-is-the-default-gateway-assigned-to-pc-b-title">
+<summary class="admonition-title">
+<div id="admonition-what-is-the-default-gateway-assigned-to-pc-b-title">
+<p>What is the default gateway assigned to PC-B?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-is-the-default-gateway-assigned-to-pc-b"></a>
+</summary>
+<div>
+<pre><code>fe80::1
+</code></pre>
+</div>
+</details>
+</li>
+</ol>
+<hr />
+<h2 id="part-4-reflection-questions"><a class="header" href="#part-4-reflection-questions">Part 4: Reflection Questions</a></h2>
+<ol>
+<li>
+<p>In researching a network connectivity issue, a technician suspects that an interface was not enabled.</p>
+<details id="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-title">
+<summary class="admonition-title">
+<div id="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-title">
+<p>What <code>show</code> command could the technician use to troubleshoot this issue?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue"></a>
+</summary>
+<div>
+<p>Answers may vary. However, <code>show ip interface brief</code> or <code>show interfaces</code> or <code>show startup-config</code> would provide the information.</p>
+</div>
+</details>
+</li>
+</ol>
+<p></p>
+<ol start="2">
+<li>
+<p>In researching a network connectivity issue, a technician suspects that an interface was assigned an incorrect subnet mask.</p>
+<details id="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-1" class="admonition admonish-question" role="note" aria-labelledby="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-1-title">
+<summary class="admonition-title">
+<div id="admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-1-title">
+<p>What <code>show</code> command could the technician use to troubleshoot this issue?</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-what-show-command-could-the-technician-use-to-troubleshoot-this-issue-1"></a>
+</summary>
+<div>
+<p>Answers may vary. <code>show startup-confi</code>g or <code>show running-config</code> or <code>show interfaces</code> or <code>show protocols</code> will provide the information.</p>
+</div>
+</details></li>
+</ol>
+
+                    </main>
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Topologies/Topologies.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../StaticRoutingLab/StaticRoutingLab.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Topologies/Topologies.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../StaticRoutingLab/StaticRoutingLab.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

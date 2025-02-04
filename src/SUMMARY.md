@@ -9,6 +9,6 @@
 - [Topologies](Topologies/Topologies.md)
 - [Basic Router Lab](BasicRouterLab/BasicRouterLab.md)
 - [Static Routing](StaticRoutingLab/StaticRoutingLab.md)
-- [RIP]()
+- [RIP](RIP/RIP.md)
 - [Border Gateway Protocol]()
 - [Application Layer]()

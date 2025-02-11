@@ -271,6 +271,8 @@ Router(config-router)# end
 
 Router# wr ? 
 
+Router# wr memory 
+
 Router# show ip bgp  
 
     BGP table version is 1, local router ID is 192.168.1.1 
@@ -348,15 +350,38 @@ Router(config-router)# neighbor 8.8.8.1 ?
 
 Router(config-router)# neighbor 8.8.8.1 remote-as 65001 
 
-Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
-
-Router(config-router)# ? 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-title">
+<div class="admonition-title">
+<div id="admonition-output-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output"></a>
+</div>
+<div>
+<pre><code>Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+<div class="admonition-title">
+<div id="admonition-terminal-4-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+</div>
+<div>
+<pre><code>Router(config-router)# ? 
 
 Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
 
 Router(config-router)# end 
 
 Router# wr ? 
+
+Router# wr memory
 
 Router# show ip bgp  
 
@@ -370,7 +395,7 @@ Router# show ip bgp summary
 
     8.8.8.2             4  65002       0                   0                1         0       0          00:45:46         4 
 
-Router# wr 
+Router# wr memory
 
 Router#ping 8.8.8.1 
 
@@ -429,12 +454,12 @@ Router#tracer 192.101.1.2
 </div>
 <h3 id="step1---configuration-on-router-r1-1"><a class="header" href="#step1---configuration-on-router-r1-1">Step:1 - Configuration on Router R1</a></h3>
 <p>Assign an IP address on interfaces of router R1.</p>
-<div id="admonition-terminal-4" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-4-title">
+<div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
 <div class="admonition-title">
-<div id="admonition-terminal-4-title">
+<div id="admonition-terminal-5-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-4"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
 </div>
 <div>
 <pre><code>Router&gt;en 
@@ -468,12 +493,12 @@ Router# show ip inter br
 </div>
 </div>
 <h3 id="step2---configure-bgp-for-router-1-1"><a class="header" href="#step2---configure-bgp-for-router-1-1">Step:2 - Configure BGP for Router 1</a></h3>
-<div id="admonition-terminal-5" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-5-title">
+<div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
 <div class="admonition-title">
-<div id="admonition-terminal-5-title">
+<div id="admonition-terminal-6-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-5"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
 </div>
 <div>
 <pre><code>Router# config t 
@@ -514,12 +539,12 @@ Router# show ip bgp summary
 </div>
 </div>
 <h3 id="step3---configuration-on-router-r2-1"><a class="header" href="#step3---configuration-on-router-r2-1">Step:3 - Configuration on Router R2</a></h3>
-<div id="admonition-terminal-6" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-6-title">
+<div id="admonition-terminal-7" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-7-title">
 <div class="admonition-title">
-<div id="admonition-terminal-6-title">
+<div id="admonition-terminal-7-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-6"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-7"></a>
 </div>
 <div>
 <pre><code>Router&gt;en 
@@ -553,12 +578,12 @@ Router# show ip inter br
 </div>
 </div>
 <h3 id="step4---configure-static-routing-on-router-r2-1"><a class="header" href="#step4---configure-static-routing-on-router-r2-1">Step:4 - Configure Static Routing on Router R2</a></h3>
-<div id="admonition-terminal-7" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-7-title">
+<div id="admonition-terminal-8" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-8-title">
 <div class="admonition-title">
-<div id="admonition-terminal-7-title">
+<div id="admonition-terminal-8-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-7"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-8"></a>
 </div>
 <div>
 <pre><code>Router# config t 
@@ -573,15 +598,38 @@ Router(config-router)# neighbor ?
 
 Router(config-router)# neighbor 8.8.8.1 ? 
 
-Router(config-router)# neighbor 8.8.8.1 remote-as 65001 
+Router(config-router)# neighbor 8.8.8.1 remote-as 65001
 
-    Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
-
-Router(config-router)# neighbor 10.2.3.2 remote-as 65003 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-1" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-1-title">
+<div class="admonition-title">
+<div id="admonition-output-1-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-1"></a>
+</div>
+<div>
+<pre><code>Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-9" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-9-title">
+<div class="admonition-title">
+<div id="admonition-terminal-9-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-9"></a>
+</div>
+<div>
+<pre><code>Router(config-router)# neighbor 10.2.3.2 remote-as 65003 
 
 Router(config-router)# end 
 
 Router# wr ? 
+
+Router# wr memory
 
 Router# show ip bgp  
 
@@ -597,7 +645,9 @@ Router# show ip bgp summary
 
     *&gt; 192.101.1.0/24    8.8.8.1              0             0                 0 		65001 i 
 
-Router# wr 
+Router# wr ?
+
+Router# wr memory
 
 Router#ping 8.8.8.1 
 
@@ -622,12 +672,12 @@ Router#tracer 192.101.1.2
 </div>
 </div>
 <h3 id="step5---configuration-on-router-r3"><a class="header" href="#step5---configuration-on-router-r3">Step:5 - Configuration on Router R3</a></h3>
-<div id="admonition-terminal-8" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-8-title">
+<div id="admonition-terminal-10" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-10-title">
 <div class="admonition-title">
-<div id="admonition-terminal-8-title">
+<div id="admonition-terminal-10-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-8"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-10"></a>
 </div>
 <div>
 <pre><code>Router&gt;en 
@@ -661,12 +711,12 @@ Router# show ip inter br
 </div>
 </div>
 <h3 id="step5---configure-bgp-for-router-r3"><a class="header" href="#step5---configure-bgp-for-router-r3">Step:5 - Configure BGP for Router R3</a></h3>
-<div id="admonition-terminal-9" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-9-title">
+<div id="admonition-terminal-11" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-11-title">
 <div class="admonition-title">
-<div id="admonition-terminal-9-title">
+<div id="admonition-terminal-11-title">
 <p>Terminal</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-terminal-9"></a>
+<a class="admonition-anchor-link" href="#admonition-terminal-11"></a>
 </div>
 <div>
 <pre><code>Router# config t 
@@ -683,13 +733,36 @@ Router(config-router)# neighbor 10.2.3.1 ?
 
 Router(config-router)# neighbor 10.2.3.1 remote-as 65002 
 
-    Router(config-router)#%BGP-5-ADJCHANGE: neighbor 10.2.3.1 Up 
-
-Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
+</code></pre>
+</div>
+</div>
+<div id="admonition-output-2" class="admonition admonish-output" role="note" aria-labelledby="admonition-output-2-title">
+<div class="admonition-title">
+<div id="admonition-output-2-title">
+<p>Output</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-output-2"></a>
+</div>
+<div>
+<pre><code>Router(config-router)#%BGP-5-ADJCHANGE: neighbor 10.2.3.1 Up 
+</code></pre>
+</div>
+</div>
+<div id="admonition-terminal-12" class="admonition admonish-terminal" role="note" aria-labelledby="admonition-terminal-12-title">
+<div class="admonition-title">
+<div id="admonition-terminal-12-title">
+<p>Terminal</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-terminal-12"></a>
+</div>
+<div>
+<pre><code>Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
 
 Router(config-router)# end 
 
-Router# wr ? 
+Router# wr ?
+
+Router# wr memory
 </code></pre>
 </div>
 </div>

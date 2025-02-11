@@ -96,6 +96,8 @@ Router(config-router)# end
 
 Router# wr ? 
 
+Router# wr memory 
+
 Router# show ip bgp  
 
     BGP table version is 1, local router ID is 192.168.1.1 
@@ -167,8 +169,21 @@ Router(config-router)# neighbor 8.8.8.1 ?
 
 Router(config-router)# neighbor 8.8.8.1 remote-as 65001 
 
-Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+```
 
+~~~
+
+~~~admonish output
+
+```
+Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+```
+
+~~~
+
+~~~admonish terminal
+
+```
 Router(config-router)# ? 
 
 Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
@@ -176,6 +191,8 @@ Router(config-router)# network 192.168.1.0 mask 255.255.255.0
 Router(config-router)# end 
 
 Router# wr ? 
+
+Router# wr memory
 
 Router# show ip bgp  
 
@@ -189,7 +206,7 @@ Router# show ip bgp summary
 
     8.8.8.2             4  65002       0                   0                1         0       0          00:45:46         4 
 
-Router# wr 
+Router# wr memory
 
 Router#ping 8.8.8.1 
 
@@ -379,15 +396,30 @@ Router(config-router)# neighbor ?
 
 Router(config-router)# neighbor 8.8.8.1 ? 
 
-Router(config-router)# neighbor 8.8.8.1 remote-as 65001 
+Router(config-router)# neighbor 8.8.8.1 remote-as 65001
 
-    Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+```
 
+~~~
+
+~~~admonish output
+
+```
+Router(config-router)#%BGP-5-ADJCHANGE: neighbor 8.1.1.1 Up 
+```
+
+~~~
+
+~~~admonish terminal 
+
+```
 Router(config-router)# neighbor 10.2.3.2 remote-as 65003 
 
 Router(config-router)# end 
 
 Router# wr ? 
+
+Router# wr memory
 
 Router# show ip bgp  
 
@@ -403,7 +435,9 @@ Router# show ip bgp summary
 
     *> 192.101.1.0/24    8.8.8.1              0             0                 0 		65001 i 
 
-Router# wr 
+Router# wr ?
+
+Router# wr memory
 
 Router#ping 8.8.8.1 
 
@@ -485,13 +519,27 @@ Router(config-router)# neighbor 10.2.3.1 ?
 
 Router(config-router)# neighbor 10.2.3.1 remote-as 65002 
 
-    Router(config-router)#%BGP-5-ADJCHANGE: neighbor 10.2.3.1 Up 
+```
 
+~~~
+
+~~~admonish output
+
+```
+Router(config-router)#%BGP-5-ADJCHANGE: neighbor 10.2.3.1 Up 
+```
+~~~
+
+~~~admonish terminal
+
+```
 Router(config-router)# network 192.168.1.0 mask 255.255.255.0 
 
 Router(config-router)# end 
 
-Router# wr ? 
+Router# wr ?
+
+Router# wr memory
 ```
 
 ~~~

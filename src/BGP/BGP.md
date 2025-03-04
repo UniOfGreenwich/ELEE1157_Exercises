@@ -259,7 +259,7 @@ Figure 2 illustrates how the setup should look.
 
 Remember to use the `?`  if you are unsure on what to do next or how each command, argument, keyword works
 
-If you are struggling to get the components you can download the pkt file here: [BGP_Routing_PT1.pkt](./BGP_Routing_PT1.pkt)
+If you are struggling to get the components you can download the pkt file here: [BGP_Routing_PT2.pkt](./BGP_Routing_PT2.pkt)
 ~~~
 
 ### Step:1 - Configuration on Router R1

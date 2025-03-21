@@ -1,0 +1,44 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What class does the IP address `126.25.34.2` belong to?
+"""
+prompt.distractors = [
+    "Class B",
+    "Class C",
+    "Class D",
+    "Class E",
+    
+]
+answer.answer = "Class A"
+id = "bcd8d5a2-b3ac-41f1-a035-9d3ff492f2a3"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What class does the IP address 191.50.23.14 belong to?
+"""
+prompt.distractors = [
+    "Class C",
+    "Class A",
+    "Class D",
+    "Class E",
+    
+]
+answer.answer = "Class B"
+id = "f66c11b3-d2fe-4d7c-91d7-1a53e4cb1e66"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What class does the IP address 224.0.0.5 belong to?
+"""
+prompt.distractors = [
+    "Class C",
+    "Class A",
+    "Class B",
+    "Class E",
+    
+]
+answer.answer = "Class D"
+id = "ff4f8f1f-0eaf-4bbe-a039-a1bc9e4ae7e2"

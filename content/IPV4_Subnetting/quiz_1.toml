@@ -1,0 +1,72 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Netmask
+"""
+prompt.distractors = [
+    """
+    Dotted Decimal: 255.255.255.0
+    Dotted Binary: 11111111.11111111.11111111.00000000
+    """,
+    """
+    Dotted Decimal: 255.255.255.128
+    Dotted Binary: 11111111.11111111.11111111.10000000
+    """
+]
+answer.answer = """
+    Dotted Decimal: 255.255.255.240 
+    Dotted Binary: 11111111.11111111.11111111.11110000
+"""
+id = "affb7a35-7612-4934-b549-aea10e255001"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Calculate the Number of Subnets and Hosts per Subnet
+"""
+prompt.distractors = [
+"12",
+"4",
+"20",
+"28"
+]
+answer.answer = "14"
+
+context = """
+
+- With /28, we have 4 host bits remaining.
+- Number of subnets created: 2&#8308; = 16
+- possible subnets.
+- Hosts per subnet: 2&#8308; − 2 = 14
+- usable addresses per subnet (subtracting 2 for network and broadcast addresses).
+
+"""
+id = "55f164c2-149b-4172-9eab-0222a8bec324"
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Determine the 3rd Subnet ID & Ranges for 192.168.1.0/28
+"""
+prompt.distractors = [
+    """
+    - Subnet ID: 192.168.1.16/28
+    - Range: 192.168.1.16 - 192.168.1.31
+    - Usable Host Range: 192.168.1.17 - 192.168.1.30
+    """,
+    """
+    - Subnet ID: 192.168.1.48/28
+    - Range: 192.168.1.48 - 192.168.1.63
+    - Usable Host Range: 192.168.1.49 - 192.168.1.62
+    """
+]
+answer.answer =     """
+    - Subnet ID: 192.168.1.32/28
+    - Range: 192.168.1.32 - 192.168.1.47
+    - Usable Host Range: 192.168.1.33 - 192.168.1.46
+    """
+id = "85127cb6-7bfd-49de-adbc-07a6857644ca"
+

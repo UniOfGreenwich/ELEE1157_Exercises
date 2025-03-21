@@ -1,0 +1,43 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+For a Class A network, how many hosts and networks are possible?
+"""
+prompt.distractors = [
+    """
+    - Networks: 2,097,152
+    - Hosts per network: 2&#8312; − 2 = 254 usable hosts
+    """,
+    """
+    - Networks: 16,384
+    - Hosts per network: 2&#185;&#8310; − 2 = 65,534 usable hosts
+    """
+
+    
+]
+answer.answer = """
+    - Networks: 128
+    - Hosts per network: 2&#178;&#8308; − 2 = 16,777,214 usable hosts
+"""
+id = "933864b1-17b5-4d8c-a550-69d9b3df9700"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+For a Class C network, how many hosts and networks are possible?
+"""
+prompt.distractors = [
+    """
+    - Networks: 128
+    - Hosts per network: 2&#178;&#8308; − 2 = 16,777,214 usable hosts
+    """,
+    """
+    - Networks: 16,384
+    - Hosts per network: 2&#185;&#8310; − 2 = 65,534 usable hosts
+    """
+]
+answer.answer =    """
+    - Networks: 2,097,152
+    - Hosts per network: 2&#8312; − 2 = 254 usable hosts
+    """
+id = "108dcefe-fb94-46d7-a0ed-df2fe25689dd"

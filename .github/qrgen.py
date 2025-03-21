@@ -11,6 +11,6 @@ web_address = f"https://uniofgreenwich.github.io/{repo_name}"
 qr = segno.make(web_address)
 
 # Save the QR code as an image
-qr.save("src/Introduction/mdbook-qr-code.png",scale=10)
+qr.save("content/Introduction/mdbook-qr-code.png",scale=10)
 
 print("QR code generated and saved successfully.")

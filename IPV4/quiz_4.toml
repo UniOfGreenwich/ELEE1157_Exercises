@@ -1,0 +1,76 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Is 127.0.0.1 a public or reserved address, and what is it used for?
+"""
+prompt.distractors = [
+    """
+    - Type: Public
+    - Purpose: Used for external network communication.
+    """,
+    """
+    - Type: Reserved (Broadcast address)
+    - Purpose: Used for broadcasting messages to all devices on a network.
+    """,
+    """
+    - Type: Public
+    - Purpose: Used for accessing websites on the internet.
+    """,
+    
+]
+answer.answer = """
+    - Type: Reserved (Loopback address)
+    - Purpose: Used for local testing of the TCP/IP stack.
+"""
+id = "83b4da14-293f-45fd-8529-6508f74862ab"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Identify the purpose of the IP address range 169.254.0.0 - 169.254.255.255.
+"""
+prompt.distractors = [
+    """
+    - Type: Public
+    - Purpose: Used for external network communication.
+    """,
+    """
+    - Type: Reserved (Broadcast address)
+    - Purpose: Used for broadcasting messages to all devices on a network.
+    """,
+    """
+    - Type: Public
+    - Purpose: Used for accessing websites on the internet.
+    """,
+]
+answer.answer = """
+    - Type: Automatic Private IP Addressing (APIPA)
+    - Purpose: Assigned when DHCP is unavailable, allowing local communication
+"""
+id = "fd505744-758e-4149-8c16-f418ae931ed5"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Is 0.0.0.0 a valid IPv4 address, and if so, what is it used for?
+"""
+prompt.distractors = [
+    """
+    - Validity: No.
+    - Purpose: Not used for any network communication.
+    """,
+    """
+    - Validity: Yes.
+    - Purpose: Used for broadcasting messages to all devices on a network.
+    """,
+    """
+    - Validity: No.
+    - Purpose: Reserved for future use.
+    """,
+]
+answer.answer = """
+    - Validity: Yes.
+    - Purpose: Represents an unspecified address or a default route.
+"""
+id = "ff86e361-21ed-4a1c-8fdf-1963f2717dd5"
+

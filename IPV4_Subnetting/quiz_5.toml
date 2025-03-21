@@ -1,0 +1,69 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Netmask
+"""
+prompt.distractors = [
+    """
+    Dotted Decimal: 255.255.255.64
+    Dotted Binary: 11111111.11111111.11111111.111000000
+    """,
+    """
+    Dotted Decimal: 255.255.255.128
+    Dotted Binary: 11111111.11111111.11111111.10000000
+    """
+]
+answer.answer = """
+    Dotted Decimal: 255.255.255.0 
+    Dotted Binary: 11111111.11111111.11111111.00000000
+"""
+id = "affb7a35-7612-4934-b549-aea10e255005"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Calculate the Number of Subnets and Hosts per Subnet
+"""
+prompt.distractors = [
+"256",
+"128",
+"64",
+"32"
+]
+answer.answer = "254"
+
+context = """
+
+- With /24, we have 8 host bits remaining.
+- Number of subnets created: 2⁰ = 1 possible subnet.
+- Hosts per subnet: 2⁸ − 2 = 254 usable addresses per subnet (subtracting 2 for network and broadcast addresses).
+
+"""
+id = "55f164c2-149b-4172-9eab-0222a8bec328"
+
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Determine the Subnet ID & Ranges for 203.0.113.0/24
+"""
+prompt.distractors = [
+    """
+    - Subnet ID: 203.0.113.64/24
+    - Range: 203.0.113.64 - 203.0.113.127
+    - Usable Host Range: 203.0.113.65 - 203.0.113.126
+    """,
+    """
+    - Subnet ID: 203.0.113.128/24
+    - Range: 203.0.113.128 - 203.0.113.191
+    - Usable Host Range: 203.0.113.129 - 203.0.113.190
+    """
+]
+answer.answer = """
+    - Subnet ID: 203.0.113.64/24
+    - Range: 203.0.113.0 - 203.0.113.255
+    - Usable Host Range: 203.0.113.1 - 203.0.113.254
+"""
+id = "85127cb6-7bfd-49de-adbc-07a6857644ce"

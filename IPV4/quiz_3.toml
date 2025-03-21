@@ -1,0 +1,43 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Convert the binary IP `11000000.10101000.00000001.00000001` to dotted decimal notation.
+"""
+prompt.distractors = [
+    """
+    1.1.168.192
+    """,
+    """
+    3.21.127.127
+    """,
+    """
+    63.185.200.2
+    """,
+    
+]
+answer.answer = """
+    192.168.1.1
+"""
+id = "40e3c1f6-fe68-49c8-959f-2611ea1ee858"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Convert the IP address `10.0.0.1` to binary.
+"""
+prompt.distractors = [
+    """
+    11000000.10101000.00000001.00000001
+    """,
+    """
+    11000100.10101010.00100001.00110001
+    """,
+    """
+    00000000.00101000.00010001.00010001
+    """,
+    
+]
+answer.answer = """
+    00001010.00000000.00000000.00000001
+"""
+id = "776dc5e1-74d4-4eee-ac2d-74931b894e42"
